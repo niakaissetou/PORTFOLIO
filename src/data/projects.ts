@@ -3,8 +3,8 @@ import type { Project } from '../types/Project'
 export const projects: Project[] = [
     
     {
-        id: 'project1',
-        title: 'Project 1',
+        id: 'projet1',
+        title: 'TP VLAN',
         summary: 'This is a summary of Project 1.',
         context: 'This is the context of Project 1.',
         need: 'This is the need of Project 1.',
@@ -17,8 +17,8 @@ export const projects: Project[] = [
         results: ['Result 1', 'Result 2']
     },
     {
-        id: 'project2',
-        title: 'Project 2',
+        id: 'projet2',
+        title: 'Création d\’un serveur DHCP/DNS/AD pour un client',
         summary: 'This is a summary of Project 2.',
         context: 'This is the context of Project 2.',
         need: 'This is the need of Project 2.',

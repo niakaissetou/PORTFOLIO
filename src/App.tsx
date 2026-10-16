@@ -10,6 +10,7 @@ import NotFound from './pages/NotFound.tsx'
 import Header from './components/Header.tsx'
 import Footer from './components/Footer.tsx'
 import { Routes, Route } from "react-router"
+import ProjectDetail from './pages/ProjectDetail.tsx'
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
     <Header />
     <main>
       <Routes>
+        <Route path="/projets/:id" element={<ProjectDetail />} />
         <Route path="/" element={<Home />} />
         <Route path="/contacts" element={<Contacts />} />
         <Route path="/documents" element={<Documents />} />
