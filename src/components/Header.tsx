@@ -8,7 +8,7 @@ function Header() {
             <nav>
                 <NavLink to="/">Acceuil</NavLink>
                 <NavLink to="/contacts">Contacts</NavLink>
-                <NavLink to="/documents">Documents</NavLink>
+                <NavLink to="/document">Tableau de synthèse</NavLink>
                 <NavLink to="/parcours">Parcours</NavLink>
                 <NavLink to="/competences">Compétences</NavLink>
                 <NavLink to="/projets">Réalisations</NavLink>

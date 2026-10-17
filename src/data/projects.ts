@@ -46,5 +46,6 @@ export const projects: Project[] = [
         //proofs: ['Proof 1', 'Proof 2'],
         skills: ['Skill 1', 'Skill 2'],
         results: ['Result 1', 'Result 2'],        
-    }
+    },
 ]
+

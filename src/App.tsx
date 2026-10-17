@@ -1,6 +1,6 @@
 import './styles/index.css'
 import Contacts from './pages/Contacts.tsx'
-import Documents from './pages/Documents.tsx' 
+import Document from './pages/Documents.tsx' 
 import Home from './pages/Home.tsx'
 import Journey from './pages/Journey.tsx'
 import Skills from './pages/Skills.tsx'
@@ -20,7 +20,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/contacts" element={<Contacts />} />
-        <Route path="/documents" element={<Documents />} />
+        <Route path="/document" element={<Document />} />
         <Route path="/parcours" element={<Journey />} />
         <Route path="/competences" element={<Skills />} />
         <Route path="/projets" element={<Projects />} />
