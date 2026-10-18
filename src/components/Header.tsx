@@ -6,7 +6,7 @@ function Header() {
         <header>
             <h1>Aissetou NIAKATE</h1>
             <nav>
-                <NavLink to="/">Acceuil</NavLink>
+                <NavLink to="/">Accueil</NavLink>
                 <NavLink to="/contacts">Contacts</NavLink>
                 <NavLink to="/document">Tableau de synthèse</NavLink>
                 <NavLink to="/parcours">Parcours</NavLink>
