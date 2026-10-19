@@ -12,6 +12,7 @@ import Header from './components/Header.tsx'
 import Footer from './components/Footer.tsx'
 import { Routes, Route } from "react-router"
 import ProjectDetail from './pages/ProjectDetail.tsx'
+import BackToTop from './components/BackToTop'
 
 function App() {
   return (
@@ -31,6 +32,7 @@ function App() {
       </Routes>
     </main>
     <Footer />
+    <BackToTop />
     </>
   )
 }

@@ -81,6 +81,23 @@ function ProjectDetail() {
         </ul>
       </section>
 
+      {project.proofs && (
+  <section>
+    <h2>Exemples</h2>
+    <div className="proofs-grid">
+      {project.proofs.map((proof, index) => (
+        <a key={proof} href={import.meta.env.BASE_URL + proof} target="_blank" className="proof">
+          <img
+            src={import.meta.env.BASE_URL + proof}
+            alt={`Capture ${index + 1} du projet ${project.title}`}
+            loading="lazy"
+          />
+        </a>
+      ))}
+    </div>
+  </section>
+)}
+
       <section>
         <h2>Compétences mobilisées</h2>
         <ul className="chips">

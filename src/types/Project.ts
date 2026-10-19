@@ -9,8 +9,8 @@ export interface Project {
   environment: string[]
   steps: string[]
   difficulties?: string[]
-  //proofs?: string[]
   skills: string[]
   results: string[]
+  proofs?: string[]
   documentation?: string
 }

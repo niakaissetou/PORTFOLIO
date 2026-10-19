@@ -1,7 +1,6 @@
 export interface Technology {
   name: string
-  icon?: string
-  icon2?: string
+  icons?: string[]
 }
 
 export interface Skill {

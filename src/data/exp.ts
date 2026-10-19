@@ -13,6 +13,16 @@ export const exps: Experience[] = [
         logo: "./logos/logo-lycee.webp"
     },
     {
+        id: "PGE",
+        type: "formation",
+        title: "Programme Grande École",
+        organization: "EPITECH",
+        place: "Kremlin-Bicêtre",
+        period: "2022 - 2024",
+        description: "Formation aux technologies de l'information, pédagogie par projets, développement logiciel",
+        logo: "./logos/epitech.webp"
+    },
+    {
         id: "stage1",
         type: "stage",
         title: "Stage - Technicienne informatique",

@@ -1,29 +1,4 @@
-function MailIcon() {
-  return (
-    <svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <rect x="3" y="5" width="18" height="14" rx="2" />
-      <path d="m3 7 9 6 9-6" />
-    </svg>
-  )
-}
-
-function ProfileIcon() {
-  return (
-    <svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <circle cx="12" cy="8" r="4" />
-      <path d="M4 21c0-4 4-6 8-6s8 2 8 6" />
-    </svg>
-  )
-}
-
-function CodeIcon() {
-  return (
-    <svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <path d="m8 7-5 5 5 5" />
-      <path d="m16 7 5 5-5 5" />
-    </svg>
-  )
-}
+import { FaEnvelope, FaLinkedin, FaGithub } from 'react-icons/fa6'
 
 function Contacts() {
   return (
@@ -34,7 +9,7 @@ function Contacts() {
       <ul className="contact-grid">
         <li>
           <a href="mailto:niakateaissetou8@gmail.com" className="contact-card">
-            <span className="contact-card-icon"><MailIcon /></span>
+            <span className="contact-card-icon"><FaEnvelope size={22} aria-hidden="true" /></span>
             <span className="contact-card-label">E-mail</span>
             <span className="contact-card-value">niakateaissetou8@gmail.com</span>
           </a>
@@ -46,7 +21,7 @@ function Contacts() {
             rel="noopener noreferrer"
             className="contact-card"
           >
-            <span className="contact-card-icon"><ProfileIcon /></span>
+            <span className="contact-card-icon"><FaLinkedin size={22} aria-hidden="true" /></span>
             <span className="contact-card-label">LinkedIn</span>
             <span className="contact-card-value">Mon profil LinkedIn</span>
           </a>
@@ -58,7 +33,7 @@ function Contacts() {
             rel="noopener noreferrer"
             className="contact-card"
           >
-            <span className="contact-card-icon"><CodeIcon /></span>
+            <span className="contact-card-icon"><FaGithub size={22} aria-hidden="true" /></span>
             <span className="contact-card-label">GitHub</span>
             <span className="contact-card-value">github.com/niakaissetou</span>
           </a>
