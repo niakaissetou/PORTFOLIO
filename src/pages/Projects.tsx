@@ -4,7 +4,7 @@ import { projects } from '../data/projects'
 function Projects() {
   return (
     <div className="page">
-      <h1>Mes projets</h1>
+      <h1>Mes réalisations</h1>
       <p className="page-intro">Les projets menés en formation et en stage : contexte, étapes, résultats.</p>
       <div className="projects-grid">
         {projects.map((project) => (

@@ -10,15 +10,15 @@ function TechWatch() {
       <section className="watch-subject">
         <h2>Mon sujet</h2>
         <p className="watch-subject-question">Les satellites peuvent-ils assurer la redondance des câbles sous-marins ?</p>
-        <p>Pourquoi ce sujet : ton paragraphe.</p>
+        <p>Pourquoi ce sujet ? Le choix s'est orienté sur cette question car elle est directement liée à l'option SISR : la <strong>continuité de service et la redondance des liaisons.</strong> On a souvent tendance à croire qu'Internet passe par les satellites, alors que la <strong>quasi-totalité du trafic international transite par des câbles posés au fond des mers</strong>, qui restent fragiles. Les coupures récentes en mer Baltique et en mer Rouge montrent qu'il s'agit d'un véritable enjeu, y compris pour les entreprises qui dépendent du cloud. L'objectif est de comprendre si les satellites peuvent servir de solution de secours, de la même manière qu'un lien de secours est prévu dans un réseau d'entreprise.</p>
       </section>
 
       <section>
         <h2>Ma méthode</h2>
         <ul className="method-list">
           <li><strong>Google Alertes</strong><br />tes mots-clés</li>
-          <li><strong>Inoreader</strong><br />tes sources (flux RSS)</li>
-          <li><strong>Rythme</strong><br />ta fréquence</li>
+          <li><strong>Inoreader</strong><br />Sources (flux RSS)</li>
+          <li><strong>Rythme</strong><br />1 fois toutes les deux semaines.</li>
         </ul>
       </section>
 

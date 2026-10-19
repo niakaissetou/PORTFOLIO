@@ -1,8 +1,8 @@
 
 :root {
-  --glass: rgba(255, 255, 255, 0.06);
-  --glass-hover: rgba(255, 255, 255, 0.1);
-  --glass-border: rgba(255, 255, 255, 0.12);
+  --glass: rgba(255, 255, 255, 0.133);
+  --glass-hover: rgba(255, 255, 255, 0.214);
+  --glass-border: rgba(255, 255, 255, 0.234);
   --glass-border-hover: rgba(45, 212, 191, 0.55);
   --muted-on-dark: #a9bccd;
   --warning: #fbbf24;

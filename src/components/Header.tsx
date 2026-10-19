@@ -9,7 +9,7 @@ const links = [
   { to: "/competences", label: "Compétences" },
   { to: "/veille-technologique", label: "Veille" },
   { to: "/document", label: "Tableau de synthèse" },
-  { to: "/contacts", label: "Contacts" }
+  { to: "/contacts", label: "Contact" }
 ]
 
 function Header() {

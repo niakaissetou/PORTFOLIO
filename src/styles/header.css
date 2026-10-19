@@ -61,7 +61,8 @@ header {
 
 .tiret {
     font-family: 'Space Mono', monospace;
-    font-weight: 600;
+    font-weight: 500;
+    font-size: clamp(20px, 2.2vw, 35px);
     color: #24b8a8;
     animation: blinker 2s linear infinite;
 }
@@ -191,6 +192,9 @@ header {
         opacity: 1;
         visibility: visible;
         transform: translateX(0);
+    }
+    .tiret {
+        font-size: 20px;
     }
 }
 
