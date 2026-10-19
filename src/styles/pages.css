@@ -91,7 +91,7 @@ main {
 
 /* La phrase d'introduction sous le titre (grand texte → Space Mono) */
 .page-intro {
-  font-family: var(--font-title);
+  font-family: var(--font-text);
   font-size: clamp(1rem, 2vw, 1.1rem);
   color: var(--muted-on-dark);
   max-width: 62ch;
@@ -615,6 +615,7 @@ main {
 .watch-subject .watch-subject-question {
   margin: 0 0 16px;
   font-family: var(--font-title);
+  font-weight: 600;
   font-size: clamp(1.25rem, 3vw, 1.75rem);
   line-height: 1.35;
   color: #ffffff;
