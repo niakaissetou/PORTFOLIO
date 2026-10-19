@@ -5,4 +5,5 @@ export interface Article {
   date: string
   url: string
   summary: string
+  veille: string
 }

@@ -40,6 +40,7 @@ export const skills: Skill[] = [
       { name: "Jira", icons: ["icons/jira-3.svg"] },
       { name: "Slack", icons: ["icons/slack-new-logo.svg"] },
       { name: "Trello", icons: ["icons/trello.svg"] },
+      { name: "Discord", icons: ["icons/discord-6.svg"] },
     ]
   }
 ]

@@ -21,11 +21,12 @@ function Home() {
             Voir mes réalisations
           </Link>
           <a
-            href={import.meta.env.BASE_URL + 'documents/cv-aissetou-niakate.pdf'}
-            download
+            href={import.meta.env.BASE_URL + 'cv/CV_Aissetou_Niakate.pdf'}
+            target="_blank"
+            rel="noreferrer"
             className="home-page-button home-page-button-outline"
           >
-            Télécharger mon CV (PDF)
+            Voir mon CV (PDF)
           </a>
         </div>
       </section>

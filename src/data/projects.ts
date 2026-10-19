@@ -47,7 +47,8 @@ export const projects: Project[] = [
         "Chaque PC joint sa passerelle et le serveur DHCP en ping",
         "Un seul serveur DHCP distribue les adresses de tous les VLAN"
       ],
-      documentation: "documentations/TP_DHCP_VLAN_ROUTEUR.pdf"
+      documentation: "documentations/TP_DHCP_VLAN_ROUTEUR.pdf",
+      proofs: ['documentations/tp-vlan.png']
     },
 
     {
