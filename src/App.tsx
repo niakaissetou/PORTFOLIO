@@ -1,4 +1,5 @@
 import './styles/index.css'
+import './styles/pages.css'
 import Contacts from './pages/Contacts.tsx'
 import Document from './pages/Documents.tsx' 
 import Home from './pages/Home.tsx'

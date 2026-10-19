@@ -8,4 +8,5 @@ export interface Experience {
     period: string
     description?: string
     missions?: string[]
+    logo?: string
 }

@@ -1,16 +1,18 @@
-import ProjectCard from '../components/ProjectCard.tsx'
-import { projects } from "../data/projects.ts"
+import ProjectCard from '../components/ProjectCard'
+import { projects } from '../data/projects'
 
 function Projects() {
-
-    return (
-        <div className="projects">
-            <h1>Mes projets</h1>
-            {projects.map((project) => (
-                <ProjectCard key={project.id} project={project} /> //Pour chaque fiche de la liste, il fabrique une carte, étiquetée avec l’id de la fiche, et lui donne cette mêmefiche à afficher
-            ))}
-        </div>
-    )
+  return (
+    <div className="page">
+      <h1>Mes projets</h1>
+      <p className="page-intro">Les projets menés en formation et en stage : contexte, étapes, résultats.</p>
+      <div className="projects-grid">
+        {projects.map((project) => (
+          <ProjectCard key={project.id} project={project} />
+        ))}
+      </div>
+    </div>
+  )
 }
 
 export default Projects

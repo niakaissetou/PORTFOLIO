@@ -4,7 +4,7 @@ export const skills: Skill[] = [
 
     {
         id: "competences",
-        label: "Competences",
+        label: "Compétences",
         technologies: [
             { name: "C", icon: "src/assets/icons/c-1.svg" },
             { name: "HTML/CSS", icon: "src/assets/icons/html-1.svg", icon2:"src/assets/icons/css-3.svg" },

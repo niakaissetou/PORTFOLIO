@@ -1,24 +1,201 @@
-@import url('https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+:root {
+  --bg-dark: #070c18;
+  --bg-light: #f4f7f9;
+  --surface: #ffffff;
+  --text: #ffffff;
+  --text-muted: #526075;
+  --text-on-dark: #e6f1f5;
+  --accent: #2dd4bf;
+  --accent-ink: #0f766e;
+  --border: #dbe3ea;
+  --radius: 16px;
+  --max-width: 1100px;
+  --font-title: 'Space Mono', monospace;
+  --font-text: 'Plus Jakarta Sans', system-ui, sans-serif;
+}
 
-.technologies {
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+body {
+
+  background-color: var(--bg-dark);
+  font-family: var(--font-text);
+  color: var(--text);
+  background-image: url("../assets/verre-nuit-4k.webp");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  padding: 1px 10px 10px 10px;
+}
+
+.turquoise {
+
+  color: #2dd4bf;
+}
+
+h1, h2, h3, h4, h5, h6, p, span, a {
+
+  color: #ffffff;
+}
+
+h1, h2, h3, h4, h5, h6 {
+
+  font-family: 'Space mono', monospace;
+}
+
+/* ---------- Page d'accueil ---------- */
+
+.home-page {
+  max-width: var(--max-width);
+  min-height: calc(100vh - 120px);
+  margin: 0 auto;
+  padding: 48px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 48px;
+}
+
+.home-page-text {
+  flex: 1;
+  min-width: 0;
+}
+
+.home-page-text .turquoise {
+  font-family: var(--font-title);
+  font-size: 0.95rem;
+  margin: 0 0 16px;
+}
+
+.home-page h1 {
+  font-size: clamp(2.5rem, 7vw, 4.5rem);
+  line-height: 1.05;
+  margin: 0 0 20px;
+}
+
+.home-page-tagline {
+  font-family: var(--font-title);
+  font-size: clamp(1rem, 2vw, 1.2rem);
+  line-height: 1.6;
+  color: #a9bccd;
+  max-width: 46ch;
+  margin: 0 0 24px;
+}
+
+.home-page-technologies {
   display: flex;
   flex-wrap: wrap;
-  gap: 1.5rem;
-  list-style: none;
-  padding: 0;
+  gap: 8px;
+  margin: 0 0 32px;
 }
 
-.technology {
+.home-page-technologies span {
+  font-family: var(--font-text);
+  font-size: 0.85rem;
+  font-weight: 500;
+  padding: 6px 14px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(45, 212, 191, 0.35);
+}
+
+.home-page-actions {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.5rem;
-  width: 6rem;
-  text-align: center;
+  flex-wrap: wrap;
+  gap: 16px;
 }
 
-.technology img {
-  width: 3rem;
-  height: 3rem;
+.home-page-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 0 24px;
+  border: 1px solid var(--accent);
+  border-radius: 999px;
+  background: var(--accent);
+  color: #070c18;
+  font-family: var(--font-text);
+  font-weight: 600;
+  text-decoration: none;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.home-page-button:hover {
+  background: #5eead4;
+  border-color: #5eead4;
+}
+
+.home-page-button-outline {
+  background: transparent;
+  color: var(--accent);
+}
+
+.home-page-button-outline:hover {
+  background: rgba(45, 212, 191, 0.12);
+  border-color: var(--accent);
+}
+
+.home-page-button:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+.home-page-photo {
+  flex-shrink: 0;
+}
+
+.home-page-photo img {
+  display: block;
+  width: clamp(200px, 26vw, 300px);
+  aspect-ratio: 1;
+  object-fit: cover;
+  border-radius: 50%;
+  box-shadow:
+    0 0 0 4px var(--accent),
+    0 0 0 14px rgba(45, 212, 191, 0.15),
+    0 20px 50px rgba(0, 0, 0, 0.4);
+}
+
+@media (max-width: 768px) {
+  .home-page {
+    flex-direction: column-reverse;
+    justify-content: center;
+    min-height: auto;
+    padding: 24px 16px 48px;
+    gap: 32px;
+    text-align: center;
+  }
+
+  .home-page-tagline {
+    margin-inline: auto;
+  }
+
+  .home-page-technologies,
+  .home-page-actions {
+    justify-content: center;
+  }
+
+  .home-page-photo img {
+    width: 180px;
+  }
+}
+
+@media (max-width: 480px) {
+  .home-page-actions {
+    flex-direction: column;
+  }
+
+  .home-page-button {
+    width: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .home-page-button {
+    transition: none;
+  }
 }

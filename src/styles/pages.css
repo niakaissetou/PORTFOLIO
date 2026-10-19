@@ -1,0 +1,896 @@
+/* =========================================================
+   pages.css : toutes les pages, sauf l'accueil et l'en-tête
+   À ranger dans src/styles/ et à importer dans App.tsx,
+   juste APRÈS index.css :  import './styles/pages.css'
+   ========================================================= */
+
+
+/* ---------- 1. Variables en plus des tiennes ---------- */
+
+:root {
+  --glass: rgba(255, 255, 255, 0.06);
+  --glass-hover: rgba(255, 255, 255, 0.1);
+  --glass-border: rgba(255, 255, 255, 0.12);
+  --glass-border-hover: rgba(45, 212, 191, 0.55);
+  --muted-on-dark: #a9bccd;
+  --warning: #fbbf24;
+}
+
+
+/* ---------- 2. La structure commune à toutes les pages ---------- */
+
+/* Le pied de page ne remonte pas au milieu d'une page courte */
+main {
+  min-height: 70vh;
+}
+
+.page {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 48px 16px 80px;
+}
+
+/* :where() garde ces règles « faibles » :
+   les classes plus bas (.project-card h2…) passent toujours devant */
+:where(.page) h1 {
+  font-size: clamp(2rem, 5vw, 3rem);
+  line-height: 1.15;
+  margin: 0 0 16px;
+}
+
+/* Le petit trait turquoise sous chaque titre de page */
+.page h1::after {
+  content: "";
+  display: block;
+  width: 64px;
+  height: 3px;
+  margin-top: 16px;
+  border-radius: 2px;
+  background: var(--accent);
+}
+
+:where(.page) h2 {
+  font-size: clamp(1.3rem, 3vw, 1.6rem);
+  line-height: 1.25;
+  margin: 0 0 16px;
+}
+
+:where(.page) h3 {
+  font-size: 1.1rem;
+  line-height: 1.3;
+  margin: 0 0 8px;
+}
+
+:where(.page) p,
+:where(.page) li {
+  line-height: 1.7;
+}
+
+:where(.page) p {
+  margin: 0 0 12px;
+}
+
+:where(.page) section {
+  margin-top: 48px;
+}
+
+:where(.page) ul,
+:where(.page) ol {
+  margin: 0 0 12px;
+  padding-left: 1.25rem;
+}
+
+:where(.page) li + li {
+  margin-top: 8px;
+}
+
+:where(.page) li::marker {
+  color: var(--accent);
+}
+
+:where(.page) a {
+  color: var(--accent);
+  text-underline-offset: 3px;
+}
+
+:where(.page) :focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+/* La phrase d'introduction sous le titre (grand texte → Space Mono) */
+.page-intro {
+  font-family: var(--font-title);
+  font-size: clamp(1rem, 2vw, 1.1rem);
+  color: var(--muted-on-dark);
+  max-width: 62ch;
+  margin: 0 0 40px;
+}
+
+
+/* ---------- 3. L'effet verre, partagé par tous les blocs ---------- */
+
+.project-card article,
+.project-detail section,
+.experience-card,
+.article-card,
+.watch-subject,
+.watch-summary,
+.method-list li,
+.technology,
+.link-list a {
+  background: var(--glass);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+
+/* ---------- 4. Bouton (page détail, page 404) ---------- */
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 0 24px;
+  border: 1px solid var(--accent);
+  border-radius: 999px;
+  background: var(--accent);
+  color: #070c18;
+  font-family: var(--font-text);
+  font-weight: 600;
+  text-align: center;
+  text-decoration: none;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.button:hover {
+  background: #5eead4;
+  border-color: #5eead4;
+}
+
+
+/* ---------- 5. Réalisations : la grille de cartes ---------- */
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr));
+  gap: 24px;
+}
+
+.project-card {
+  display: block;
+  height: 100%;
+  color: inherit;
+  text-decoration: none;
+  border-radius: var(--radius);
+}
+
+.project-card article {
+  height: 100%;
+  padding: 24px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+  transition: transform 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.project-card:hover article {
+  transform: translateY(-4px);
+  border-color: var(--glass-border-hover);
+  background-color: var(--glass-hover);
+}
+
+.project-card:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
+}
+
+.project-card h2 {
+  font-size: 1.2rem;
+  line-height: 1.3;
+  margin: 0 0 10px;
+}
+
+/* \00a0 = espace insécable : la flèche ne part jamais seule à la ligne */
+.project-card h2::after {
+  content: "\00a0→";
+  color: var(--accent);
+}
+
+.project-card p {
+  margin: 0 0 12px;
+  color: var(--muted-on-dark);
+}
+
+.project-card p:last-child {
+  margin-bottom: 0;
+}
+
+/* Contexte et besoin : 3 lignes maximum, pour des cartes de même hauteur */
+.project-card-detail {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  overflow: hidden;
+  font-size: 0.92rem;
+}
+
+.project-card-detail span {
+  margin-right: 6px;
+  font-family: var(--font-title);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--accent);
+}
+
+
+/* ---------- 6. La fiche détail ---------- */
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 24px;
+  color: var(--accent);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.back-link:hover {
+  text-decoration: underline;
+}
+
+.project-detail {
+  max-width: 900px;
+}
+
+.project-detail .page-intro {
+  margin-bottom: 32px;
+}
+
+.project-detail section {
+  margin-top: 20px;
+  padding: 24px 28px;
+}
+
+.project-detail section > :last-child {
+  margin-bottom: 0;
+}
+
+/* Un petit carré turquoise devant chaque titre de rubrique */
+.project-detail h2 {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1.15rem;
+  margin: 0 0 14px;
+}
+
+.project-detail h2::before {
+  content: "";
+  flex-shrink: 0;
+  width: 10px;
+  height: 10px;
+  border-radius: 3px;
+  background: var(--accent);
+}
+
+/* Les difficultés ressortent en ambre */
+.project-detail .difficulties {
+  border-left: 3px solid var(--warning);
+}
+
+.project-detail .difficulties h2::before {
+  background: var(--warning);
+}
+
+.project-detail .difficulties li::marker {
+  color: var(--warning);
+}
+
+/* Les listes en pastilles (environnement, compétences) */
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.chips li {
+  margin: 0;
+  padding: 6px 14px;
+  border: 1px solid rgba(45, 212, 191, 0.35);
+  border-radius: 999px;
+  background: rgba(45, 212, 191, 0.1);
+  font-size: 0.88rem;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+/* Les étapes, numérotées dans des ronds turquoise */
+.steps {
+  counter-reset: step;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.steps li {
+  counter-increment: step;
+  position: relative;
+  min-height: 30px;
+  margin: 0;
+  padding-left: 44px;
+}
+
+.steps li + li {
+  margin-top: 14px;
+}
+
+.steps li::before {
+  content: counter(step);
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: var(--accent);
+  color: #070c18;
+  font-family: var(--font-title);
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+
+/* ---------- 7. Parcours : deux frises, Formation et Expérience ---------- */
+
+.journey-group {
+  margin-top: 40px;
+}
+
+.journey-group .journey-group-title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 0 0 20px;
+  font-size: 1.35rem;
+}
+
+.journey-group-title svg {
+  flex-shrink: 0;
+  color: var(--accent);
+}
+
+.timeline {
+  position: relative;
+  padding-left: 40px;
+}
+
+/* La ligne verticale */
+.timeline::before {
+  content: "";
+  position: absolute;
+  left: 8px;
+  top: 10px;
+  bottom: 10px;
+  width: 4px;
+  border-radius: 2px;
+  background: linear-gradient(var(--accent), rgba(45, 212, 191, 0.15));
+}
+
+.experience-card {
+  position: relative;
+  margin: 0 0 24px;
+  padding: 24px 24px 20px;
+  transition: border-color 0.2s ease;
+}
+
+.experience-card:hover {
+  border-color: var(--glass-border-hover);
+}
+
+/* Le point sur la ligne, en face de chaque carte */
+.experience-card::before {
+  content: "";
+  position: absolute;
+  left: -40px;
+  top: 24px;
+  width: 20px;
+  height: 20px;
+  border: 4px solid var(--accent);
+  border-radius: 50%;
+  background: #070c18;
+  box-shadow: 0 0 0 4px rgba(45, 212, 191, 0.15);
+}
+
+.experience-card-logo {
+  width: 52px;
+  height: 52px;
+  margin-bottom: 14px;
+  padding: 6px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.92);
+  object-fit: contain;
+}
+
+.experience-card h3 {
+  margin: 0 0 6px;
+  font-size: 1.15rem;
+  color: var(--accent);
+}
+
+.experience-card .experience-card-period {
+  margin: 0 0 2px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.experience-card .experience-card-place {
+  margin: 0 0 12px;
+  font-size: 0.92rem;
+  color: var(--muted-on-dark);
+}
+
+.experience-card .experience-card-description {
+  margin: 0;
+  color: var(--text-on-dark);
+}
+
+/* Fermée : la description tient sur 2 lignes */
+.experience-card .is-clamped {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  overflow: hidden;
+}
+
+.experience-card-missions {
+  margin-top: 14px;
+}
+
+.experience-card-footer {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 14px;
+}
+
+.more-button {
+  padding: 8px 18px;
+  border: 1px solid var(--glass-border);
+  border-radius: 999px;
+  background: var(--glass-hover);
+  color: var(--accent);
+  font-family: var(--font-text);
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: border-color 0.2s ease;
+}
+
+.more-button:hover {
+  border-color: var(--glass-border-hover);
+}
+
+.more-button:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+
+/* ---------- 8. Compétences : les badges ---------- */
+/* Remplace tes règles .technologies et .technology de index.css */
+
+.skills-category {
+  margin-top: 40px;
+}
+
+.technologies {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(112px, 1fr));
+  gap: 16px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.technology {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: auto;
+  margin: 0;
+  padding: 18px 10px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-align: center;
+  transition: border-color 0.2s ease, transform 0.2s ease;
+}
+
+.technology:hover {
+  border-color: var(--glass-border-hover);
+  transform: translateY(-3px);
+}
+
+/* Une tuile claire derrière chaque logo : les logos noirs restent visibles */
+.technology img {
+  width: 52px;
+  height: 52px;
+  padding: 7px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.92);
+  object-fit: contain;
+}
+
+
+/* ---------- 9. Veille technologique ---------- */
+
+.watch-subject {
+  margin-top: 0;
+  padding: 32px;
+}
+
+.watch-subject h2 {
+  margin: 0 0 12px;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--accent);
+}
+
+.watch-subject .watch-subject-question {
+  margin: 0 0 16px;
+  font-family: var(--font-title);
+  font-size: clamp(1.25rem, 3vw, 1.75rem);
+  line-height: 1.35;
+  color: #ffffff;
+}
+
+.watch-subject > :last-child {
+  margin-bottom: 0;
+}
+
+.method-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 240px), 1fr));
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.method-list li {
+  margin: 0;
+  padding: 16px 18px;
+}
+
+.articles-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 320px), 1fr));
+  gap: 20px;
+}
+
+.article-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 24px;
+}
+
+.article-card .article-card-meta {
+  margin: 0 0 8px;
+  font-family: var(--font-title);
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--accent);
+}
+
+.article-card p {
+  color: var(--muted-on-dark);
+}
+
+/* Le lien reste collé en bas de la carte */
+.article-card a {
+  margin-top: auto;
+  padding-top: 8px;
+  align-self: flex-start;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.article-card a::after {
+  content: "\00a0→";
+}
+
+.article-card a:hover {
+  text-decoration: underline;
+}
+
+.watch-summary {
+  padding: 28px;
+  border-left: 3px solid var(--accent);
+}
+
+.watch-summary > :last-child {
+  margin-bottom: 0;
+}
+
+
+/* ---------- 10. Documents et Contact : une liste de liens ---------- */
+
+.link-list {
+  display: grid;
+  gap: 12px;
+  max-width: 720px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.link-list li {
+  margin: 0;
+}
+
+.link-list a {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 18px 22px;
+  color: #ffffff;
+  font-weight: 600;
+  text-decoration: none;
+  transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.link-list a::after {
+  content: "→";
+  flex-shrink: 0;
+  color: var(--accent);
+  transition: transform 0.2s ease;
+}
+
+.link-list a:hover {
+  border-color: var(--glass-border-hover);
+  background-color: var(--glass-hover);
+}
+
+.link-list a:hover::after {
+  transform: translateX(4px);
+}
+
+
+
+/* ---------- 10 bis. Tableau de synthèse : la carte du document ---------- */
+
+.doc-card {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  max-width: 820px;
+  padding: 28px;
+  background: var(--glass);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+}
+
+/* Le badge « PDF » à gauche */
+.doc-card-badge {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 72px;
+  height: 88px;
+  border: 1px solid rgba(45, 212, 191, 0.45);
+  border-radius: 12px;
+  background: rgba(45, 212, 191, 0.12);
+  color: var(--accent);
+  font-family: var(--font-title);
+  font-weight: 700;
+}
+
+.doc-card-text {
+  flex: 1;
+  min-width: 0;
+}
+
+.doc-card h2 {
+  margin: 0 0 6px;
+  font-size: 1.2rem;
+}
+
+.doc-card .doc-card-description {
+  margin: 0;
+  color: var(--muted-on-dark);
+}
+
+.doc-card-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.button-outline {
+  background: transparent;
+  color: var(--accent);
+}
+
+.button-outline:hover {
+  background: rgba(45, 212, 191, 0.12);
+  border-color: var(--accent);
+}
+
+
+/* ---------- 10 ter. Contact : une carte par moyen de contact ---------- */
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 260px), 1fr));
+  gap: 20px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.contact-grid li {
+  margin: 0;
+}
+
+.contact-card {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  height: 100%;
+  padding: 24px;
+  background: var(--glass);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  color: #ffffff;
+  text-decoration: none;
+  transition: transform 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.contact-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--glass-border-hover);
+  background-color: var(--glass-hover);
+}
+
+.contact-card:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
+}
+
+/* Le rond turquoise avec l'icône */
+.contact-card-icon {
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  margin-bottom: 12px;
+  border-radius: 50%;
+  background: rgba(45, 212, 191, 0.12);
+  color: var(--accent);
+}
+
+.contact-card .contact-card-label {
+  font-family: var(--font-title);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--accent);
+}
+
+.contact-card .contact-card-value {
+  font-weight: 600;
+  color: #ffffff;
+  overflow-wrap: anywhere;
+}
+
+
+/* ---------- 11. Page introuvable ---------- */
+
+.not-found {
+  text-align: center;
+}
+
+.not-found .not-found-code {
+  margin: 0 0 8px;
+  font-family: var(--font-title);
+  font-size: clamp(4rem, 15vw, 8rem);
+  line-height: 1;
+  color: var(--accent);
+}
+
+/* Le trait sous le titre est centré, comme le reste */
+.not-found h1::after {
+  margin-inline: auto;
+}
+
+.not-found p {
+  margin-inline: auto;
+  margin-bottom: 32px;
+}
+
+
+/* ---------- 12. Pied de page ---------- */
+
+.site-footer {
+  margin-top: 40px;
+  padding: 24px 16px;
+  border-top: 1px solid var(--glass-border);
+  text-align: center;
+}
+
+.site-footer p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--muted-on-dark);
+}
+
+
+/* ---------- 13. Téléphone ---------- */
+
+@media (max-width: 768px) {
+  .page {
+    padding: 32px 16px 56px;
+  }
+
+  .project-detail section {
+    padding: 20px;
+  }
+
+  .watch-subject,
+  .watch-summary {
+    padding: 22px;
+  }
+
+  .doc-card {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 22px;
+  }
+
+  .doc-card-actions {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .button {
+    width: 100%;
+  }
+}
+
+
+/* ---------- 14. Moins d'animations pour qui le demande ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+  .page *,
+  .page *::before,
+  .page *::after {
+    transition: none !important;
+  }
+
+  .project-card:hover article,
+  .technology:hover,
+  .contact-card:hover {
+    transform: none;
+  }
+}
