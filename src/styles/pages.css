@@ -7,9 +7,6 @@
   --warning: #fbbf24;
 }
 
-
-/* ---------- 2. La structure commune à toutes les pages ---------- */
-
 /* Le pied de page ne remonte pas au milieu d'une page courte */
 main {
   min-height: 70vh;
@@ -1141,4 +1138,113 @@ main {
 .watch-synthesis ul {
   margin: 0;
   padding-left: 1.25rem;
+}
+
+/* Même fond « verre » que les autres cartes de la page */
+.watch-rappel {
+  padding: 32px;
+  background: var(--glass);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+/* Le titre de section, comme « Veille » et « Mon sujet » */
+.watch-rappel h2 {
+  margin: 0 0 12px;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--accent);
+}
+
+.watch-rappel .watch-rappel-intro {
+  margin-bottom: 20px;
+}
+
+/* Les trois cartes protocoles, côte à côte (une par ligne sur téléphone) */
+.protocol-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr));
+  gap: 16px;
+  margin: 0 0 16px;
+  padding: 0;
+  list-style: none;
+}
+
+.protocol-list .protocol-card {
+  margin: 0;
+  padding: 18px 20px;
+  border: 1px solid var(--glass-border);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.protocol-card h3 {
+  margin: 0 0 8px;
+  color: var(--accent);
+}
+
+.protocol-card > p {
+  font-size: 0.95rem;
+  color: var(--muted-on-dark);
+}
+
+/* Les lignes « Ports / Atout / Limite / Logiciel » */
+.protocol-facts {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.protocol-facts li {
+  margin: 0;
+  padding: 8px 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.protocol-facts li + li {
+  margin-top: 0;
+}
+
+/* La petite étiquette turquoise au-dessus de chaque ligne */
+.protocol-facts span {
+  display: block;
+  font-family: var(--font-title);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--accent);
+}
+
+/* La phrase sur les autres protocoles, plus discrète */
+.watch-rappel .watch-rappel-note {
+  margin: 0 0 20px;
+  font-size: 0.9rem;
+  color: var(--muted-on-dark);
+}
+
+/* L'encadré du post-quantique */
+.watch-callout {
+  padding: 20px 22px;
+  border-left: 3px solid var(--accent);
+  border-radius: 12px;
+  background: rgba(45, 212, 191, 0.08);
+}
+
+.watch-callout h3 {
+  margin: 0 0 14px;
+}
+
+.watch-callout .steps {
+  margin: 0;
+}
+
+@media (max-width: 768px) {
+  .watch-rappel {
+    padding: 22px;
+  }
 }
