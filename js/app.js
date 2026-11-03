@@ -253,30 +253,23 @@
         v.outils.map(function (o) { return "<li><strong>" + proteger(o.nom) + "</strong> : " + proteger(o.usage) + "</li>"; }).join("") + "</ul></span></div>" +
         "</div>";
 
-      html += '<h3 class="titre_section">Mes sources et leur fiabilité</h3>' +
-        '<div class="defilement" role="region" aria-label="Sources de veille, défilement horizontal possible" tabindex="0"><table><thead><tr><th scope="col">Type</th><th scope="col">Sources</th><th scope="col">Fiabilité</th><th scope="col">Pourquoi je la garde</th></tr></thead><tbody>' +
-        v.sources.map(function (s) {
-          return '<tr><th scope="row">' + proteger(s.type) + "</th><td>" + texte(s.noms) + "</td><td>" + proteger(s.fiabilite) + "</td><td>" + texte(s.pourquoi) + "</td></tr>";
-        }).join("") + "</tbody></table></div>" +
-        '<h3 class="titre_section">Mes alertes Google</h3><ul class="liste_simple">' +
+      html += '<h3 class="titre_section">Mes alertes Google</h3><ul class="liste_simple">' +
         v.alertes.map(function (a) { return "<li><code>" + proteger(a) + "</code></li>"; }).join("") + "</ul>";
 
       /* 2. mes veilles : une fiche dépliable par veille, la plus récente ouverte */
-      html += '<h2 class="titre_section">Mes veilles</h2><p class="introduction">De la plus récente à la plus ancienne. Chaque veille a ses fiches de lecture et sa synthèse.</p>';
+      html += '<h2 class="titre_section">Mes veilles</h2><p class="introduction">De la plus récente à la plus ancienne. Chaque veille a ses articles avec un résumé avec une synthèse.</p>';
       v.veilles.forEach(function (veille, i) {
         var syn = veille.synthese;
         html += '<details class="veille_fiche"' + (i === 0 ? " open" : "") + "><summary>Veille n°" + proteger(veille.numero) + " · " +
           (veille.date ? formater_date(veille.date) : a_completer("Date à compléter")) +
-          ' <span class="puce">' + compter(veille.fiches.length, "fiche") + "</span></summary><div class=\"veille_corps\">" +
-          "<h3>Mes fiches de lecture</h3><div class=\"journal\">";
+          ' <span class="puce">' + compter(veille.fiches.length, "article") + "</span></summary><div class=\"veille_corps\">" +
+          "<h3>Mes articles lus</h3><div class=\"journal\">";
         veille.fiches.forEach(function (f) {
-          html += '<article class="entree">' + (f.exemple ? "<p>" + a_completer("Exemple à remplacer par ma vraie fiche") + "</p>" : "") +
+          html += '<article class="entree">' + (f.exemple ? "<p>" + a_completer("Exemple à remplacer par mon vrai article") + "</p>" : "") +
             '<div class="meta">' + pastille_date("Collectée le", f.date_collecte) + pastille_date("Article du", f.date_article) + "</div>" +
             "<h4>" + (f.url ? '<a href="' + proteger(lien_sur(f.url)) + '" target="_blank" rel="noopener">' + texte(f.titre) + "</a>" : texte(f.titre)) + "</h4>" +
             '<p class="meta">Source : ' + texte(f.source) + (f.fiabilite ? ' · <span class="puce">Fiabilité : ' + proteger(f.fiabilite) + "</span>" : "") + "</p>" +
-            "<p>" + texte(f.resume) + "</p>" +
-            '<div class="mon_avis"><span class="etiquette_avis">Ce que ça change pour ma problématique</span><p>' + texte(f.change) + "</p></div>" +
-            '<div class="mon_avis"><span class="etiquette_avis">Mon avis</span><p>' + texte(f.avis) + "</p></div></article>";
+            "<p>" + texte(f.resume) + "</p>" + "</article>";
         });
         /* synthèse de cette veille : ce que j'ai appris, réflexion et à retenir, à surveiller */
         html += "</div><h3>Synthèse de cette veille</h3>" + (syn.exemple ? "<p>" + a_completer("Exemple à remplacer par ma vraie synthèse") + "</p>" : "") +
