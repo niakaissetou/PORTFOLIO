@@ -1,0 +1,783 @@
+/* ===== STYLE DU PORTFOLIO : bureau clair, dossiers bleus qui flottent. Palette bleu + orange (deutéranomalie) : jamais de rouge/vert, jamais la couleur seule. ===== */
+
+
+/* ===== 1. VARIABLES : mes couleurs et mes polices, définies une seule fois ===== */
+:root {
+  --fond: #EEF2F7;             /* fond de la page */
+  --barre: #DFE6EF;          /* fond de la barre du haut */
+  --surface: #FFFFFF;        /* fond des cartes et de la fenêtre */
+  --surface_2: #F3F6FA;      /* fond secondaire */
+  --texte: #12151B;             /* couleur du texte */
+  --texte_doux: #3F4A5A;          /* texte secondaire */
+  --trait: #A9B5C5;          /* bordures */
+  --bleu: #0057A3;         /* bleu principal */
+  --texte_sur_bleu: #FFFFFF;   /* texte posé sur le bleu */
+  --orange: #B34700;           /* orange foncé : focus, alertes, difficultés */
+  --bleu_clair: #CFE5FA;             /* bleu très clair pour surligner */
+  --orange_clair: #FFF0E3;    /* fond orange très clair */
+
+  --dossier_fond: #3A97D6;
+  --dossier_devant: #6CBBEF;
+  --dossier_bord: #17669E;
+
+  --police_titre: "Space Mono", "Courier New", monospace;
+  --police_texte: "Plus Jakarta Sans", Verdana, sans-serif;
+
+  --epaisseur: 1px;          /* épaisseur des bordures (2px en contraste renforcé) */
+}
+
+/* Mode sombre : si l'ordinateur est en mode sombre, on change seulement les variables */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --fond: #0F141B;
+    --barre: #19212C;
+    --surface: #18202B;
+    --surface_2: #1F2937;
+    --texte: #F1F4F8;
+    --texte_doux: #C3CDDB;
+    --trait: #53627A;
+    --bleu: #7DBDFF;
+    --texte_sur_bleu: #07121F;
+    --orange: #FFB066;
+    --bleu_clair: #23476F;
+    --orange_clair: #3B2410;
+    --dossier_fond: #2C7EB8;
+    --dossier_devant: #4FA8DE;
+    --dossier_bord: #A8D8F8;
+    color-scheme: dark;
+  }
+}
+
+/* Options du bouton Accessibilité : le JavaScript ajoutera ces classes sur <html> */
+html.contraste { --trait: var(--texte); --texte_doux: var(--texte); --epaisseur: 2px; }
+html.grand { font-size: 125%; }
+
+
+/* ===== 2. BASES ===== */
+* { box-sizing: border-box; }   /* la largeur d'un élément inclut son padding et sa bordure */
+
+/* IMPORTANT : un élément avec l'attribut hidden doit rester caché,
+   même si une règle lui donne display:grid ou display:flex */
+[hidden] { display: none !important; }
+
+html { font-size: 100%; }
+
+body {
+  margin: 0;
+  background: var(--fond);
+  color: var(--texte);
+  font-family: var(--police_texte);
+  font-size: 1rem;
+  line-height: 1.55;
+}
+
+a { color: var(--bleu); }
+
+/* Contour orange visible quand on navigue au clavier (touche Tab) */
+:focus-visible {
+  outline: 3px solid var(--orange);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+/* Marge gauche et droite d'au moins 16px (plus si le téléphone a une encoche) */
+.marge {
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+
+/* Lien "Aller au contenu" : caché en haut, il apparaît quand il reçoit le focus */
+.lien_contenu {
+  position: absolute;
+  left: 16px;
+  top: -60px;
+  background: var(--bleu);
+  color: var(--texte_sur_bleu);
+  padding: .6rem 1rem;
+  border-radius: 8px;
+  z-index: 50;
+}
+.lien_contenu:focus { top: 8px; }
+
+
+/* ===== 3. BARRE DU HAUT ===== */
+.menu_haut {
+  position: sticky;           /* reste collée en haut quand on fait défiler */
+  top: 0;
+  z-index: 20;
+  background: var(--barre);
+  border-bottom: var(--epaisseur) solid var(--trait);
+}
+.menu_contenu {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  min-height: 44px;
+  flex-wrap: wrap;            /* sur petit écran, les éléments passent à la ligne */
+  padding-block: 4px;
+}
+.menu_haut strong a {
+  color: inherit;
+  text-decoration: none;
+  font-family: var(--police_titre);
+  font-weight: 700;
+}
+.info { color: var(--texte_doux); font-size: .9rem; }
+.espace { flex: 1; }          /* pousse ce qui suit vers la droite */
+
+.menu_haut button {
+  font: inherit;
+  font-size: .9rem;
+  color: var(--texte);
+  background: transparent;
+  border: var(--epaisseur) solid var(--trait);
+  border-radius: 8px;
+  padding: .3rem .7rem;
+  cursor: pointer;
+  min-height: 36px;
+}
+.menu_haut button:hover { background: var(--surface); }
+
+/* Panneau Accessibilité */
+.acces { position: relative; }
+.acces_panneau {
+  position: absolute;
+  right: 0;
+  top: calc(100% + 8px);
+  width: min(330px, calc(100vw - 32px));
+  background: var(--surface);
+  border: var(--epaisseur) solid var(--trait);
+  border-radius: 12px;
+  padding: 1rem;
+  z-index: 40;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, .18);
+}
+.acces_panneau h2 { font-family: var(--police_titre); font-size: 1.05rem; margin: 0 0 .5rem; }
+.acces_panneau label { display: flex; gap: .7rem; align-items: center; padding: .5rem 0; cursor: pointer; }
+.acces_panneau input { width: 22px; height: 22px; accent-color: var(--bleu); }
+.acces_panneau p { margin: .5rem 0 0; font-size: .85rem; color: var(--texte_doux); }
+
+
+/* ===== 4. ACCUEIL : le conteneur est en relative, les éléments dedans en absolute ===== */
+.accueil {
+  position: relative;
+  height: calc(100dvh - 44px);   /* tout l'écran moins la barre du haut */
+  min-height: 620px;
+  overflow: hidden;
+}
+
+/* --- Le grand titre, centré --- */
+.bloc_titre {
+  position: absolute;
+  left: 50%;
+  top: 45%;
+  transform: translate(-50%, -50%);   /* recentre exactement l'élément sur ce point */
+  width: 100%;
+  padding-inline: 16px;
+  text-align: center;
+}
+
+.titre {
+  margin: 0;
+  font-family: var(--police_titre);
+  font-weight: 700;
+  font-size: clamp(2.6rem, 11.5vw, 9.5rem);   /* minimum, valeur fluide, maximum */
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+}
+
+/* Le cercle de la photo à la place du O (sa taille dépend du titre grâce aux em) */
+.photo {
+  width: .8em;
+  height: .8em;
+  border-radius: 50%;
+  border: .05em dashed var(--bleu);
+  margin-inline: .02em;
+  display: inline-grid;
+  place-items: center;
+  font-family: var(--police_texte);
+  font-weight: 700;
+  color: var(--bleu);
+  background: var(--surface);
+  overflow: hidden;
+}
+.photo span { font-size: .13em; line-height: 1.2; }
+.photo img { width: 100%; height: 100%; object-fit: cover; display: block; }   /* pour ta vraie photo */
+
+.sous_titre {
+  font-family: var(--police_titre);
+  font-weight: 700;
+  font-size: clamp(1.1rem, 3.2vw, 2.6rem);
+  margin: .3rem 0 0;
+}
+.auteur {
+  margin: .6rem 0 0;
+  font-size: clamp(1rem, 1.6vw, 1.25rem);
+}
+.auteur strong {
+  background: var(--bleu_clair);
+  padding: .05em .35em;
+  border-radius: 4px;
+  outline: 2px solid var(--bleu);
+}
+
+/* --- Les dossiers --- */
+.dossier {
+  position: absolute;
+  left: var(--x);               /* la position vient du style="--x:..." écrit dans le HTML */
+  top: var(--y);
+  transform: translate(-50%, -50%);
+  display: block;
+  width: 140px;
+  padding: 6px;
+  text-align: center;
+  text-decoration: none;
+  color: var(--texte);
+  border-radius: 14px;
+}
+
+/* .flotte fait le mouvement haut-bas. La durée et le décalage changent pour chaque dossier. */
+.flotte {
+  display: grid;
+  justify-items: center;
+  gap: .35rem;
+  animation: flotter var(--duree, 5s) ease-in-out var(--decalage, 0s) infinite;
+}
+
+/* .zoom grossit au survol (séparé de .flotte : on ne peut pas animer deux transform sur un même élément) */
+.zoom {
+  display: grid;
+  justify-items: center;
+  gap: .35rem;
+  transition: transform .2s ease;
+}
+.dossier:hover .zoom,
+.dossier:focus-visible .zoom { transform: scale(1.1); }
+
+.dossier svg {
+  width: clamp(70px, 7.5vw, 104px);
+  height: auto;
+  filter: drop-shadow(0 6px 8px rgba(10, 40, 80, .22));
+}
+.corbeille svg { width: clamp(54px, 5.6vw, 78px); }
+
+.etiquette {
+  font-weight: 700;
+  font-size: 1.05rem;
+  line-height: 1.2;
+  padding: .1rem .4rem;
+  border-radius: 6px;
+}
+.dossier:hover .etiquette,
+.dossier:focus-visible .etiquette {
+  text-decoration: underline;           /* l'état "survolé" est aussi visible sans la couleur */
+  text-decoration-thickness: 2px;
+  text-underline-offset: 4px;
+}
+
+@keyframes flotter {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-16px); }
+}
+
+/* --- La barre du bas : CV + contacts --- */
+.barre_bas {
+  position: absolute;
+  left: 50%;
+  bottom: 16px;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  padding: .7rem 1.1rem;
+  max-width: calc(100% - 32px);
+  background: var(--surface);
+  border: var(--epaisseur) solid var(--trait);
+  border-radius: 22px;
+  box-shadow: 0 8px 24px rgba(10, 30, 60, .15);
+}
+.contacts { display: flex; gap: .9rem; }
+.contact {
+  display: grid;
+  justify-items: center;
+  gap: .25rem;
+  text-decoration: none;
+  color: var(--texte);
+  font-size: .75rem;
+  font-weight: 700;
+  padding: .2rem;
+  border-radius: 12px;
+  transition: transform .15s ease;
+}
+.contact:hover,
+.contact:focus-visible { transform: translateY(-4px) scale(1.08); }
+
+/* Les icônes carrées (CV, GitHub, LinkedIn, mail et les logos des outils) : toutes de la même taille */
+.logo {
+  width: 46px;
+  height: 46px;
+  flex: none;
+  border-radius: 12px;
+  background: #fff;                 /* fond blanc : les logos sont dessinés pour un fond clair */
+  border: 2px solid var(--texte);
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+}
+.logo img { width: 72%; height: 72%; object-fit: contain; display: block; }
+.logo svg { width: 62%; height: 62%; }
+.sigle { font-family: var(--police_titre); font-weight: 700; font-size: .85rem; color: #12151B; }
+
+
+/* ===== 5. FENÊTRE (style Finder) pour les autres pages ===== */
+.zone_pages { padding-block: 16px; }
+
+.fenetre {
+  max-width: 1120px;
+  margin: 0 auto;
+  background: var(--surface);
+  border: var(--epaisseur) solid var(--trait);
+  border-radius: 14px;
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: 250px minmax(0, 1fr);   /* menu de 250px + le reste */
+  grid-template-rows: auto 1fr;
+  min-height: calc(100dvh - 44px - 32px);
+  box-shadow: 0 14px 40px rgba(10, 30, 60, .14);
+}
+
+.barre_titre {
+  grid-column: 1 / -1;                           /* occupe toute la largeur */
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: .6rem .9rem;
+  background: var(--surface_2);
+  border-bottom: var(--epaisseur) solid var(--trait);
+}
+.fermer a {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-size: .8rem;
+  font-weight: 700;
+  line-height: 1;
+  text-decoration: none;
+  color: var(--texte);
+  border: 2px solid var(--texte);
+  background: var(--barre);
+}
+.fermer a:hover { background: var(--orange); color: #fff; }
+.titre_page { font-family: var(--police_titre); font-weight: 700; font-size: 1.05rem; }
+.retour { margin-left: auto; font-size: .9rem; }
+
+/* Menu de gauche */
+.menu_gauche {
+  background: var(--surface_2);
+  border-right: var(--epaisseur) solid var(--trait);
+  padding: 1rem .75rem;
+}
+.menu_gauche h2 {
+  margin: 0 0 .5rem .5rem;
+  font-size: .75rem;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--texte_doux);
+}
+.menu_gauche ul { list-style: none; margin: 0; padding: 0; display: grid; gap: .15rem; }
+.menu_gauche a {
+  display: flex;
+  align-items: center;
+  gap: .6rem;
+  padding: .55rem .6rem;
+  border-radius: 10px;
+  text-decoration: none;
+  color: var(--texte);
+  font-weight: 700;
+  border: 2px solid transparent;
+  min-height: 44px;
+  transition: transform .15s ease;
+}
+.menu_gauche a svg { width: 30px; height: 24px; flex: none; }
+.menu_gauche a:hover { transform: scale(1.04); background: var(--bleu_clair); }
+.menu_gauche a[aria-current="page"] { background: var(--surface); border-color: var(--bleu); }   /* page en cours : cadre + point */
+.menu_gauche a[aria-current="page"]::after { content: "●"; margin-left: auto; color: var(--bleu); font-size: .7rem; }
+
+/* Zone où s'affiche le contenu de la page */
+.zone_texte { padding: clamp(1.1rem, 3vw, 2.2rem); min-width: 0; }
+.zone_texte h1 {
+  font-family: var(--police_titre);
+  font-weight: 700;
+  font-size: clamp(1.7rem, 4vw, 2.5rem);
+  line-height: 1.15;
+  margin: 0 0 .4rem;
+  text-wrap: balance;
+}
+.zone_texte h2 { font-family: var(--police_titre); font-size: 1.15rem; margin: 0 0 .4rem; }
+.zone_texte h3 { font-family: var(--police_titre); font-size: 1.05rem; margin: 0; }
+.introduction { color: var(--texte_doux); max-width: 65ch; margin: 0 0 1.5rem; }
+.titre_section { margin-top: 2rem !important; }
+
+
+/* ===== 6. ÉLÉMENTS RÉUTILISÉS DANS LES PAGES ===== */
+/* Étiquette "À compléter" : bordure orange en pointillés + texte, pas seulement la couleur */
+.a_completer {
+  display: inline-block;
+  border: 2px dashed var(--orange);
+  color: var(--orange);
+  font-weight: 700;
+  padding: 0 .5rem;
+  border-radius: 6px;
+  font-size: .85rem;
+}
+.puce {
+  display: inline-block;
+  font-size: .8rem;
+  font-weight: 700;
+  border: var(--epaisseur) solid var(--texte);
+  border-radius: 999px;
+  padding: .1rem .65rem;
+  background: var(--surface_2);
+}
+.bouton {
+  display: inline-block;
+  font-weight: 700;
+  text-decoration: none;
+  color: var(--texte_sur_bleu);
+  background: var(--bleu);
+  border: 2px solid var(--bleu);
+  border-radius: 10px;
+  padding: .4rem .9rem;
+}
+.bouton:hover { text-decoration: underline; }
+.bouton.secondaire { background: transparent; color: var(--bleu); }
+
+/* Grille de cartes (réalisations, articles…) */
+.grille { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(min(100%, 270px), 1fr)); }
+.carte {
+  border: var(--epaisseur) solid var(--trait);
+  border-radius: 12px;
+  padding: 1.1rem;
+  background: var(--surface);
+  min-width: 0;
+  transition: transform .2s ease;
+  display: flex;
+  flex-direction: column;
+  gap: .6rem;
+}
+.carte:hover { transform: scale(1.02); }       /* léger zoom au survol */
+.carte p { margin: 0; }
+.puces { display: flex; flex-wrap: wrap; gap: .4rem; margin-top: auto; padding-top: .4rem; }
+
+/* Bandeau "outil choisi" sur la page Réalisations */
+.filtre {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: .6rem;
+  margin: 0 0 1rem;
+  padding: .6rem .8rem;
+  border: 2px solid var(--bleu);
+  border-radius: 10px;
+  background: var(--bleu_clair);
+}
+.filtre button {
+  font: inherit;
+  font-weight: 700;
+  border: var(--epaisseur) solid var(--texte);
+  background: var(--surface);
+  color: var(--texte);
+  border-radius: 8px;
+  padding: .25rem .7rem;
+  cursor: pointer;
+  min-height: 36px;
+}
+
+/* Difficultés rencontrées : orange + symbole ▲ + texte */
+details.difficulte { border: 2px solid var(--orange); background: var(--orange_clair); border-radius: 10px; }
+details.difficulte summary {
+  cursor: pointer;
+  padding: .5rem .8rem;
+  font-weight: 700;
+  color: var(--orange);
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+}
+.difficulte_corps { padding: .2rem .9rem .9rem; display: grid; gap: .8rem; }
+.difficulte_item { display: grid; gap: .3rem; }
+.difficulte_item h4 { margin: 0; font-size: 1rem; }
+.difficulte_item dl { margin: 0; display: grid; gap: .3rem; }
+.difficulte_item dt { font-weight: 700; font-size: .75rem; letter-spacing: .06em; text-transform: uppercase; color: var(--orange); }
+.difficulte_item dd { margin: 0; overflow-wrap: anywhere; }
+
+/* Compétences : familles d'outils et pastilles */
+.familles { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr)); margin-bottom: 1.5rem; }
+.famille { border: var(--epaisseur) solid var(--trait); border-radius: 14px; padding: 1rem; background: var(--surface); min-width: 0; }
+.famille header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: .5rem;
+  border-bottom: var(--epaisseur) solid var(--trait);
+  padding-bottom: .6rem;
+  margin-bottom: .8rem;
+}
+.famille h2 { margin: 0; }
+.compte { font-size: .85rem; color: var(--texte_doux); white-space: nowrap; }
+.pastilles { display: grid; gap: .6rem; grid-template-columns: repeat(auto-fill, minmax(min(100%, 150px), 1fr)); margin: 0; padding: 0; list-style: none; }
+.pastille {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: .7rem;
+  font: inherit;
+  font-weight: 700;
+  color: var(--texte);
+  background: var(--surface_2);
+  border: var(--epaisseur) solid var(--trait);
+  border-radius: 14px;
+  padding: .4rem .8rem .4rem .45rem;
+  cursor: pointer;
+  text-align: left;
+  min-height: 58px;
+  transition: transform .15s ease;
+}
+.pastille:hover,
+.pastille:focus-visible { transform: scale(1.05); background: var(--bleu_clair); }
+.pastille small { display: block; font-weight: 400; color: var(--texte_doux); font-size: .75rem; line-height: 1.1; }
+
+/* Blocs du référentiel */
+.bloc { border: var(--epaisseur) solid var(--trait); border-radius: 12px; padding: 1.1rem; margin-bottom: 1rem; }
+.bloc header { display: flex; flex-wrap: wrap; gap: .5rem 1rem; align-items: baseline; justify-content: space-between; }
+.bloc ul { margin: .5rem 0 0; padding-left: 1.2rem; }
+.niveau { font-weight: 700; white-space: nowrap; }
+.niveau .carres { letter-spacing: .15em; }
+
+/* Parcours : chronologie */
+ol.chronologie { list-style: none; margin: 0; padding: 0 0 0 1.4rem; border-left: 3px solid var(--bleu); display: grid; gap: 1.2rem; }
+ol.chronologie li { position: relative; }
+ol.chronologie li::before {
+  content: "";
+  position: absolute;
+  left: calc(-1.4rem - 9px);
+  top: .4rem;
+  width: 15px;
+  height: 15px;
+  background: var(--surface);
+  border: 3px solid var(--bleu);
+  border-radius: 50%;
+}
+ol.chronologie .quand { font-weight: 700; font-size: .9rem; color: var(--texte_doux); }
+ol.chronologie h2 { margin: 0; }
+ol.chronologie p { margin: .2rem 0 0; }
+
+/* Tableaux (avec défilement horizontal sur petit écran) */
+.defilement { overflow-x: auto; border: var(--epaisseur) solid var(--trait); border-radius: 12px; }
+table { border-collapse: collapse; width: 100%; min-width: 560px; }
+th, td { padding: .7rem .8rem; text-align: left; border-bottom: var(--epaisseur) solid var(--trait); vertical-align: top; }
+thead th { background: var(--surface_2); font-size: .9rem; }
+tbody tr:last-child td { border-bottom: 0; }
+
+/* Contact : lignes clé / valeur */
+.lignes { display: grid; gap: .8rem; }
+.ligne { display: flex; flex-wrap: wrap; gap: .5rem 1rem; align-items: center; border: var(--epaisseur) solid var(--trait); border-radius: 12px; padding: .8rem 1rem; }
+.ligne .cle { font-weight: 700; min-width: 7.5rem; }
+.ligne .valeur { flex: 1; min-width: 0; overflow-wrap: anywhere; }
+.ligne button {
+  font: inherit;
+  font-weight: 700;
+  color: var(--texte);
+  background: var(--surface_2);
+  border: var(--epaisseur) solid var(--texte);
+  border-radius: 8px;
+  padding: .3rem .8rem;
+  cursor: pointer;
+  min-height: 40px;
+}
+
+/* Veille */
+.avis_boite { border: 2px solid var(--bleu); background: var(--bleu_clair); border-radius: 12px; padding: 1rem 1.1rem; display: grid; gap: .5rem; }
+.avis_boite h2, .avis_boite p { margin: 0; }
+.journal { display: grid; gap: 1rem; }
+.entree { border: var(--epaisseur) solid var(--trait); border-radius: 12px; padding: 1.1rem; display: grid; gap: .7rem; }
+.entree .meta { display: flex; flex-wrap: wrap; gap: .5rem; align-items: center; font-size: .9rem; color: var(--texte_doux); }
+.entree p { margin: 0; }
+.mon_avis { background: var(--surface_2); border: var(--epaisseur) solid var(--trait); border-radius: 10px; padding: .7rem .9rem; display: grid; gap: .3rem; }
+.mon_avis .etiquette_avis { font-size: .75rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--bleu); }
+.suite { margin-top: 1rem; padding: .8rem 1rem; border: 2px dashed var(--bleu); border-radius: 10px; }
+.liste_sources { margin: 0; padding-left: 1.2rem; }
+
+/* Tableau de synthèse : carte PDF */
+.doc_carte { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem 1.25rem; border: var(--epaisseur) solid var(--trait); border-radius: 14px; padding: 1.1rem; }
+.badge_pdf {
+  width: 72px;
+  height: 88px;
+  flex: none;
+  border: 2px solid var(--texte);
+  border-radius: 10px;
+  display: grid;
+  place-items: center;
+  font-family: var(--police_titre);
+  font-weight: 700;
+  color: var(--bleu);
+  background: var(--surface_2);
+}
+.doc_texte { flex: 1; min-width: 200px; }
+.doc_texte h2 { margin: 0 0 .2rem; }
+.doc_texte p { margin: 0; color: var(--texte_doux); }
+.doc_actions { display: grid; gap: .5rem; }
+
+/* Corbeille : faux fichiers dépliables */
+.fichiers { display: grid; gap: .6rem; }
+details.fichier { border: var(--epaisseur) solid var(--trait); border-radius: 12px; background: var(--surface); }
+details.fichier summary { display: flex; align-items: center; gap: .8rem; padding: .7rem 1rem; cursor: pointer; min-height: 48px; font-weight: 700; list-style: none; }
+details.fichier summary::-webkit-details-marker { display: none; }
+details.fichier summary .meta { margin-left: auto; font-weight: 400; color: var(--texte_doux); font-size: .85rem; }
+details.fichier[open] summary { border-bottom: var(--epaisseur) solid var(--trait); }
+.blague { padding: 1rem; display: grid; gap: .7rem; justify-items: start; }
+.blague p { margin: 0; max-width: 65ch; }
+.image_blague img { max-width: min(100%, 360px); border-radius: 10px; border: 2px solid var(--texte); display: block; }
+
+/* Message "rien à afficher" */
+.vide { border: 2px dashed var(--trait); border-radius: 14px; padding: 2rem 1rem; text-align: center; display: grid; justify-items: center; gap: .6rem; }
+.vide svg { width: 64px; height: auto; }
+
+
+/* ===== 7. PETITS ÉCRANS (moins de 760px) : tout s'empile en une colonne ===== */
+@media (max-width: 760px) {
+  /* L'accueil n'est plus un bureau avec des éléments qui flottent partout :
+     tout s'empile dans une colonne, dans l'ordre : titre, dossiers, barre du bas. */
+  .accueil {
+    height: auto;
+    min-height: 0;
+    padding-block: 1.2rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  .bloc_titre { position: static; transform: none; padding: 0; }
+  .titre { font-size: clamp(2.2rem, 12.5vw, 4rem); }
+
+  .dossiers {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    gap: .6rem;
+    padding-inline: 16px;
+  }
+  .dossier { position: static; transform: none; width: auto; }
+
+  .barre_bas { position: static; transform: none; margin-inline: auto; flex-wrap: wrap; justify-content: center; }
+
+  /* La fenêtre passe sur une seule colonne et le menu devient une ligne qu'on fait défiler */
+  .fenetre { grid-template-columns: minmax(0, 1fr); }
+  .menu_gauche { border-right: 0; border-bottom: var(--epaisseur) solid var(--trait); padding: .6rem; }
+  .menu_gauche h2 { display: none; }
+  .menu_gauche ul { display: flex; overflow-x: auto; gap: .4rem; padding-bottom: .3rem; }
+  .menu_gauche a { white-space: nowrap; flex: none; }
+  .menu_gauche a[aria-current="page"]::after { display: none; }
+}
+
+
+/* ===== 8. MOUVEMENT : animations coupées si demandé ===== */
+html.calme *, html.calme *::before, html.calme *::after { animation: none !important; transition: none !important; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}
+
+/* ===== 9. RÉALISATIONS : cartes de la liste, page d'un projet ===== */
+a.carte_projet { text-decoration: none; color: var(--texte); }          /* toute la carte est un lien */
+a.carte_projet:hover h2, a.carte_projet:focus-visible h2 { text-decoration: underline; text-underline-offset: 4px; }
+.carte_projet h2 { display: flex; justify-content: space-between; gap: .6rem; font-size: 1.05rem; margin: 0; }
+.fleche { color: var(--bleu); flex: none; }                             /* la flèche → */
+.carte_projet .resume { color: var(--texte_doux); }
+.carte_projet .extrait { font-size: .9rem; }
+
+.retour_liste { display: inline-block; margin-bottom: 1rem; font-weight: 700; }   /* ← Retour aux réalisations */
+.section_carte { border: var(--epaisseur) solid var(--trait); border-radius: 12px; padding: 1rem 1.1rem; margin-bottom: 1rem; background: var(--surface); }
+.section_carte h2 { margin: 0 0 .4rem; }
+.section_carte p { margin: 0; max-width: 65ch; }
+.section_carte ol { margin: 0; padding-left: 1.3rem; display: grid; gap: .4rem; }
+
+.liste_docs { display: grid; gap: .6rem; }
+.ligne_doc { display: flex; flex-wrap: wrap; align-items: center; gap: .5rem 1rem; border: var(--epaisseur) solid var(--trait); border-radius: 10px; padding: .6rem .8rem; background: var(--surface_2); }
+.nom_doc { flex: 1; min-width: 200px; font-weight: 700; }
+.boutons_doc { display: flex; flex-wrap: wrap; gap: .5rem; }
+
+/* le titre reçoit le focus à l'ouverture d'une page : pas de cadre autour */
+.zone_texte h1:focus { outline: none; }
+
+/* ===== 10. AJOUTS : parcours, projets détaillés, veille ===== */
+.section_carte ul { margin: 0; padding-left: 1.3rem; display: grid; gap: .4rem; }
+.difficulte_corps ul { margin: 0; padding-left: 1.2rem; display: grid; gap: .6rem; }
+.preuves { display: grid; gap: .8rem; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); }
+.preuves img { width: 100%; height: auto; display: block; background: #fff; border: 2px solid var(--texte); border-radius: 10px; }
+
+/* Parcours : logo + texte à côté */
+.etape { display: flex; gap: .9rem; align-items: flex-start; }
+.etape_texte { min-width: 0; }
+.etape_texte p { margin: .2rem 0 0; }
+.lieu { color: var(--texte_doux); font-weight: 700; }
+.missions { margin: .5rem 0 0; padding-left: 1.2rem; display: grid; gap: .3rem; }
+
+/* Compétences : deux logos côte à côte dans la même boîte */
+.logo.double { display: flex; gap: 2px; }
+.logo.double img { width: 38%; height: 38%; }
+
+/* Veille : une fiche dépliable par séance */
+details.veille_fiche { border: var(--epaisseur) solid var(--trait); border-radius: 12px; background: var(--surface); margin-bottom: 1rem; }
+details.veille_fiche > summary { cursor: pointer; padding: .8rem 1rem; font-weight: 700; min-height: 48px; display: flex; flex-wrap: wrap; align-items: center; gap: .3rem 1rem; }
+details.veille_fiche[open] > summary { border-bottom: var(--epaisseur) solid var(--trait); }
+.veille_corps { padding: 1rem; display: grid; gap: 1rem; }
+.synthese_veille { display: grid; gap: .7rem; }
+.synthese_veille ul { margin: 0; padding-left: 1.2rem; display: grid; gap: .3rem; }
+.veille_corps h3 { margin: .3rem 0 0; }
+.entree h4 { margin: 0; font-family: var(--police_titre); font-size: 1rem; }
+
+/* corrections : la liste des missions n'a pas les points de la chronologie */
+ol.chronologie .missions li::before { content: none; }
+.synthese_veille p { margin: 0; }
+.pastille > span:last-child { min-width: 0; overflow-wrap: anywhere; }
+details.difficulte { margin-bottom: 1rem; }
+
+/* ===== 11. AJOUTS : veille (dispositif) et aperçu du tableau de synthèse ===== */
+.liste_simple { margin: 0; padding-left: 1.2rem; display: grid; gap: .4rem; }
+.ligne .valeur .puces { margin: 0; padding: 0; }
+.entree h4 { overflow-wrap: anywhere; }
+code { font-family: var(--police_titre); font-size: .9em; background: var(--surface_2); border: var(--epaisseur) solid var(--trait); border-radius: 6px; padding: .05em .35em; overflow-wrap: anywhere; }
+
+/* l'aperçu est en haut de la carte, sur toute la largeur */
+.apercu_pdf { flex-basis: 100%; display: block; text-decoration: none; }
+.apercu_pdf img { display: block; width: min(100%, 720px); height: auto; border: 2px solid var(--texte); border-radius: 10px; background: #fff; }
+.apercu_pdf:hover img, .apercu_pdf:focus-visible img { outline: 3px solid var(--bleu); outline-offset: 3px; }
+
+/* noms d'outils longs : on coupe entre les mots, pas au milieu */
+.pastille > span:last-child { overflow-wrap: break-word; }
+
+/* ===== 12. AJOUTS : bouton "remonter en haut" et paragraphes de la conclusion ===== */
+.bouton_haut {
+  position: fixed;
+  right: max(16px, env(safe-area-inset-right, 0px));
+  bottom: max(16px, env(safe-area-inset-bottom, 0px));
+  z-index: 30;
+  width: 52px;
+  height: 52px;
+  display: grid;
+  place-items: center;
+  color: var(--texte);
+  background: var(--surface);
+  border: 2px solid var(--texte);
+  border-radius: 50%;
+  box-shadow: 0 6px 18px rgba(10, 30, 60, .25);
+  cursor: pointer;
+  transition: transform .15s ease;
+}
+.bouton_haut:hover, .bouton_haut:focus-visible { transform: translateY(-3px) scale(1.08); background: var(--bleu_clair); }
+.avis_boite p + p { margin-top: .6rem; }
+.veille_corps > p { margin: 0; }

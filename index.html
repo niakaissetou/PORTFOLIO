@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <title>Portfolio Niakate</title>
+    <meta name="description" content="Portfolio BTS SIO option SISR, épreuve E5 : parcours, réalisations, compétences, veille technologique.">  
+    <!-- polices : Space Mono pour les titres, Plus Jakarta Sans pour les textes -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700&family=Space+Mono:wght@400;700&display=swap">
+
+    <link rel="stylesheet" href="style/style.css">
+</head>
+<body>
+
+  <!-- les icones je les dessine une seule fois ici, puis je les affiche avec <use> plus tard-->
+    <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+        <symbol id="icone_dossier" viewBox="0 0 120 96">
+            <path d="M8 16Q8 6 18 6H44L54 18H102Q112 18 112 28V80Q112 90 102 90H18Q8 90 8 80Z" style="fill:var(--dossier_fond);stroke:var(--dossier_bord);stroke-width:3"/>
+            <rect x="8" y="28" width="104" height="62" rx="10" style="fill:var(--dossier_devant);stroke:var(--dossier_bord);stroke-width:3"/>
+        </symbol>
+        <symbol id="icone_corbeille" viewBox="0 0 120 96">
+            <path d="M47 20V13Q47 8 52 8H68Q73 8 73 13V20" style="fill:none;stroke:var(--dossier_bord);stroke-width:5;stroke-linecap:round;stroke-linejoin:round"/>
+            <path fill-rule="evenodd" d="M30 34H90L85 84Q84.5 90 78 90H42Q35.5 90 35 84Z M42 47a4 4 0 0 1 8 0V77a4 4 0 0 1-8 0Z M56 47a4 4 0 0 1 8 0V77a4 4 0 0 1-8 0Z M70 47a4 4 0 0 1 8 0V77a4 4 0 0 1-8 0Z" style="fill:var(--dossier_devant);stroke:var(--dossier_bord);stroke-width:3;stroke-linejoin:round"/>
+            <rect x="20" y="20" width="80" height="14" rx="7" style="fill:var(--dossier_fond);stroke:var(--dossier_bord);stroke-width:3"/>
+        </symbol>
+    </svg>
+
+  <!-- lien caché qui apparaît avec la touche Tab : il permet de passer le menu -->
+    <a class="lien_contenu" href="#contenu">Aller au contenu</a>
+
+  <header class="menu_haut">
+    <div class="menu_contenu marge">
+      <strong><a href="#accueil">Portfolio</a></strong>
+      <span class="info" id="formation">BTS SIO · option SISR</span>
+      <span class="info" id="session">Épreuve E5 · session 2027</span>
+      <span class="espace"></span>
+
+      <!-- bouton accessibilité : le panneau est caché avec "hidden" -->
+      <div class="acces">
+        <button id="acces_bouton" type="button" aria-expanded="false" aria-controls="acces_panneau">Accessibilité</button>
+        <div id="acces_panneau" class="acces_panneau" hidden>
+          <h2>Confort de lecture</h2>
+          <label for="opt_calme"><input id="opt_calme" type="checkbox"> Arrêter les animations</label>
+          <label for="opt_contraste"><input id="opt_contraste" type="checkbox"> Contraste renforcé</label>
+          <label for="opt_grand"><input id="opt_grand" type="checkbox"> Texte plus grand</label>
+          <p>Site pensé pour la deutéranomalie (confusion rouge/vert) : palette bleu et orange, et aucune information donnée par la couleur seule. La navigation fonctionne au clavier (Tab, Entrée).</p>
+        </div>
+      </div>
+      <span class="info">© 2026-2027</span>
+    </div>
+  </header>
+
+  <main id="contenu" tabindex="-1">
+
+    <!-- accueil -->
+    <section id="zone_accueil" class="accueil" aria-label="Accueil">
+
+      <div class="bloc_titre">
+        <!-- le titre est découpé pour mettre la photo à la place du O ; aria-label garde "Portfolio" pour les lecteurs d'écran -->
+        <h1 class="titre" aria-label="Portfolio">
+          <span aria-hidden="true">P</span>
+          <span class="photo" id="photo" aria-hidden="true"><img src="doc-img/pfp/photo_pfp.png" alt=""></span>
+          <span aria-hidden="true">RTFOLIO</span>
+        </h1>
+        <p class="sous_titre" id="sous_titre">administration systèmes &amp; réseaux</p>
+        <p class="auteur">par <strong id="nom">Aïssetou Niakate</strong></p>
+      </div>
+
+      <!-- chaque dossier est un lien ; --x et --y = sa place, --duree et --decalage = son flottement -->
+      <nav class="dossiers" aria-label="Pages du portfolio">
+        <a class="dossier" href="#parcours" style="--x:14%;--y:17%;--duree:5.2s;--decalage:-.4s">
+          <span class="flotte"><span class="zoom">
+            <svg width="96" height="77" viewBox="0 0 120 96" aria-hidden="true"><use href="#icone_dossier"/></svg>
+            <span class="etiquette">Parcours</span>
+          </span></span>
+        </a>
+        <a class="dossier" href="#realisations" style="--x:38%;--y:14%;--duree:4.6s;--decalage:-1.8s">
+          <span class="flotte"><span class="zoom">
+            <svg width="96" height="77" viewBox="0 0 120 96" aria-hidden="true"><use href="#icone_dossier"/></svg>
+            <span class="etiquette">Réalisations</span>
+          </span></span>
+        </a>
+        <a class="dossier" href="#veille" style="--x:63%;--y:13%;--duree:5.8s;--decalage:-2.6s">
+          <span class="flotte"><span class="zoom">
+            <svg width="96" height="77" viewBox="0 0 120 96" aria-hidden="true"><use href="#icone_dossier"/></svg>
+            <span class="etiquette">Veille</span>
+          </span></span>
+        </a>
+        <a class="dossier" href="#contact" style="--x:87%;--y:22%;--duree:4.9s;--decalage:-.9s">
+          <span class="flotte"><span class="zoom">
+            <svg width="96" height="77" viewBox="0 0 120 96" aria-hidden="true"><use href="#icone_dossier"/></svg>
+            <span class="etiquette">Contact</span>
+          </span></span>
+        </a>
+        <a class="dossier" href="#competences" style="--x:12%;--y:66%;--duree:5.5s;--decalage:-3.1s">
+          <span class="flotte"><span class="zoom">
+            <svg width="96" height="77" viewBox="0 0 120 96" aria-hidden="true"><use href="#icone_dossier"/></svg>
+            <span class="etiquette">Compétences</span>
+          </span></span>
+        </a>
+        <a class="dossier" href="#synthese" style="--x:88%;--y:60%;--duree:4.7s;--decalage:-2.2s">
+          <span class="flotte"><span class="zoom">
+            <svg width="96" height="77" viewBox="0 0 120 96" aria-hidden="true"><use href="#icone_dossier"/></svg>
+            <span class="etiquette">Tableau de synthèse</span>
+          </span></span>
+        </a>
+        <a class="dossier corbeille" href="#corbeille" style="--x:94%;--y:86%;--duree:5.1s;--decalage:-1.2s">
+          <span class="flotte"><span class="zoom">
+            <svg width="80" height="64" viewBox="0 0 120 96" aria-hidden="true"><use href="#icone_corbeille"/></svg>
+            <span class="etiquette">Corbeille</span>
+          </span></span>
+        </a>
+      </nav>
+
+      <!-- barre du bas : CV et contacts (les logos viennent du dossier logo/) -->
+      <div class="barre_bas" role="group" aria-label="Mon CV et mes contacts">
+        <div class="contacts">
+          <a class="contact" id="lien_cv" href="doc-img/cv/CV_Aissetou_Niakate.pdf" target="_blank" rel="noopener" aria-label="Ouvrir mon CV (PDF, nouvel onglet)">
+            <span class="logo" id="logo_cv">
+              <svg width="28" height="28" viewBox="0 0 48 48" aria-hidden="true"><path d="M12 5h17l9 9v29H12z" fill="none" stroke="#12151B" stroke-width="3" stroke-linejoin="round"/><path d="M29 5v9h9M18 24h14M18 31h14M18 38h8" fill="none" stroke="#12151B" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>CV
+          </a>
+          <a class="contact" id="lien_github" href="https://github.com/aissetou-niakate" target="_blank" rel="noopener">
+            <span class="logo" id="logo_github"><img src="doc-img/icons/github-icon-1.svg" alt=""></span>GitHub
+          </a>
+          <a class="contact" id="lien_linkedin" href="https://www.linkedin.com/in/aissetou-niakate-lin/" target="_blank" rel="noopener">
+            <span class="logo" id="logo_linkedin"><img src="doc-img/icons/linkedin-icon-2.svg" alt=""></span>LinkedIn
+          </a>
+          <a class="contact" id="lien_mail" href="#contact">
+            <span class="logo" id="logo_mail">
+              <svg width="28" height="28" viewBox="0 0 48 48" aria-hidden="true"><rect x="5" y="10" width="38" height="28" rx="4" fill="none" stroke="#12151B" stroke-width="3"/><path d="M7 14l17 14 17-14" fill="none" stroke="#12151B" stroke-width="3" stroke-linejoin="round"/></svg>
+            </span>E-mail
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== fenêtre des autres pages (cachée au départ, app.js la remplit) ===== -->
+    <section id="zone_pages" class="zone_pages marge" hidden>
+      <div class="fenetre">
+
+        <div class="barre_titre">
+          <div class="fermer">
+            <a href="#accueil" aria-label="Fermer la fenêtre et revenir à l'accueil" title="Fermer">×</a>
+          </div>
+          <span class="titre_page" id="nom_page">Parcours</span>
+          <a class="retour" href="#accueil">← Retour au bureau</a>
+        </div>
+
+        <nav class="menu_gauche" aria-label="Autres pages">
+          <h2>Pages</h2>
+          <ul id="liste_pages"></ul>
+        </nav>
+
+        <div class="zone_texte" id="zone_texte" aria-live="polite"></div>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- bouton en bas à droite pour remonter en haut de la page (app.js l'affiche quand on défile) -->
+  <button type="button" id="bouton_haut" class="bouton_haut" aria-label="Remonter en haut de la page" title="Remonter en haut" hidden>
+    <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </button>
+
+  <!-- data.js = mon contenu, app.js = le fonctionnement -->
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
