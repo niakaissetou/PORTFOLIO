@@ -1,6 +1,0 @@
-Mets ici tes PDF, avec exactement ces noms (ou change les chemins dans data.js) :
-CV.pdf
-Tableau_de_synthese.pdf
-Documentation_DNS_M2L.pdf
-Documentation_AD_M2L.pdf
-(et plus tard la documentation DHCP : renseigne son chemin dans data.js)
