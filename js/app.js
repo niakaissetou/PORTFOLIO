@@ -257,7 +257,7 @@
         v.alertes.map(function (a) { return "<li><code>" + proteger(a) + "</code></li>"; }).join("") + "</ul>";
 
       /* 2. mes veilles : une fiche dépliable par veille, la plus récente ouverte */
-      html += '<h2 class="titre_section">Mes veilles</h2><p class="introduction">De la plus récente à la plus ancienne. Chaque veille a ses articles avec un résumé avec une synthèse.</p>';
+      html += '<h2 class="titre_section">Mes veilles</h2><p class="introduction">De la plus ancienne à la plus récente. Chaque veille a ses articles avec un résumé et une synthèse de cette dernière.</p>';
       v.veilles.forEach(function (veille, i) {
         var syn = veille.synthese;
         html += '<details class="veille_fiche"' + (i === 0 ? " open" : "") + "><summary>Veille n°" + proteger(veille.numero) + " · " +

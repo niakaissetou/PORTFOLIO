@@ -14,8 +14,8 @@ window.donnees = {
     sous_titre: "administration systèmes & réseaux",
     photo: "",                           /* vide : ma photo est déjà dans index.html */
     cv_pdf: "doc-img/cv/CV_Aissetou_Niakate.pdf",
-    email: "prenom.nom@exemple.fr",
-    github: "https://github.com/aissetou-niakate",
+    email: "niakateaissetou8@gmail.com",
+    github: "https://github.com/niakaissetou?tab=repositories",
     linkedin: "https://www.linkedin.com/in/aissetou-niakate-lin/"
   },
 
@@ -421,8 +421,8 @@ window.donnees = {
     titre: "Tableau de synthèse des réalisations professionnelles",
     sous_titre: "BTS SIO option SISR · document PDF",
     texte: "Le document officiel de l'épreuve : toutes mes réalisations professionnelles et les compétences qu'elles mobilisent.",
-    apercu: "doc-img/documentations/tableau-de-synthese",
-    pdf: "doc-img/documentations/tableau-de-synthese.pdf"
+    apercu: "tableau-de-synthese",
+    pdf: "doc-img/documentations/tableau-de-synthese-e6.pdf"
   },
 
   /* ----- page Veille -----
