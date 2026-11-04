@@ -1,0 +1,35 @@
+/* ===== style/responsive.css : petits écrans (moins de 760px) : tout s'empile en une colonne. ===== */
+
+/* ===== 7. PETITS ÉCRANS (moins de 760px) : tout s'empile en une colonne ===== */
+@media (max-width: 760px) {
+  /* L'accueil n'est plus un bureau avec des éléments qui flottent partout :
+     tout s'empile dans une colonne, dans l'ordre : titre, dossiers, barre du bas. */
+  .accueil {
+    height: auto;
+    min-height: 0;
+    padding-block: 1.2rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  .bloc_titre { position: static; transform: none; padding: 0; }
+  .titre { font-size: clamp(2.2rem, 12.5vw, 4rem); }
+
+  .dossiers {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    gap: .6rem;
+    padding-inline: 16px;
+  }
+  .dossier { position: static; transform: none; width: auto; }
+
+  .barre_bas { position: static; transform: none; margin-inline: auto; flex-wrap: wrap; justify-content: center; }
+
+  /* La fenêtre passe sur une seule colonne et le menu devient une ligne qu'on fait défiler */
+  .fenetre { grid-template-columns: minmax(0, 1fr); }
+  .menu_gauche { border-right: 0; border-bottom: var(--epaisseur) solid var(--trait); padding: .6rem; }
+  .menu_gauche h2 { display: none; }
+  .menu_gauche ul { display: flex; overflow-x: auto; gap: .4rem; padding-bottom: .3rem; }
+  .menu_gauche a { white-space: nowrap; flex: none; }
+  .menu_gauche a[aria-current="page"]::after { display: none; }
+}

@@ -10,7 +10,22 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700&family=Space+Mono:wght@400;700&display=swap">
 
-    <link rel="stylesheet" href="style/style.css">
+    <!-- styles : un fichier par partie du site. L'ordre compte : je ne le change pas -->
+    <link rel="stylesheet" href="style/couleurs.css">
+    <link rel="stylesheet" href="style/general.css">
+    <link rel="stylesheet" href="style/barre-haut.css">
+    <link rel="stylesheet" href="style/accueil.css">
+    <link rel="stylesheet" href="style/fenetre.css">
+    <link rel="stylesheet" href="style/composants.css">
+    <link rel="stylesheet" href="style/pages/parcours.css">
+    <link rel="stylesheet" href="style/pages/realisations.css">
+    <link rel="stylesheet" href="style/pages/competences.css">
+    <link rel="stylesheet" href="style/pages/veille.css">
+    <link rel="stylesheet" href="style/pages/synthese.css">
+    <link rel="stylesheet" href="style/pages/corbeille.css">
+    <link rel="stylesheet" href="style/bouton-haut.css">
+    <link rel="stylesheet" href="style/responsive.css">
+    <link rel="stylesheet" href="style/accessibilite.css">
 </head>
 <body>
 
@@ -137,7 +152,7 @@
       </div>
     </section>
 
-    <!-- ===== fenêtre des autres pages (cachée au départ, app.js la remplit) ===== -->
+    <!-- ===== fenêtre des autres pages (cachée au départ, js/site la remplit) ===== -->
     <section id="zone_pages" class="zone_pages marge" hidden>
       <div class="fenetre">
 
@@ -160,13 +175,32 @@
     </section>
   </main>
 
-  <!-- bouton en bas à droite pour remonter en haut de la page (app.js l'affiche quand on défile) -->
+  <!-- bouton en bas à droite pour remonter en haut de la page (js/site/bouton-haut.js l'affiche quand on défile) -->
   <button type="button" id="bouton_haut" class="bouton_haut" aria-label="Remonter en haut de la page" title="Remonter en haut" hidden>
     <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
   </button>
 
-  <!-- data.js = mon contenu, app.js = le fonctionnement -->
-  <script src="js/data.js"></script>
-  <script src="js/app.js"></script>
+  <!-- js/data = mon contenu (je modifie ici) ; js/site = le fonctionnement (L'ordre compte : main.js en dernier) -->
+  <script src="js/data/informations.js"></script>
+  <script src="js/data/parcours.js"></script>
+  <script src="js/data/outils.js"></script>
+  <script src="js/data/projets.js"></script>
+  <script src="js/data/synthese.js"></script>
+  <script src="js/data/veille.js"></script>
+  <script src="js/data/corbeille.js"></script>
+  <script src="js/site/fonctions.js"></script>
+  <script src="js/site/accueil.js"></script>
+  <script src="js/site/pages/parcours.js"></script>
+  <script src="js/site/pages/realisations.js"></script>
+  <script src="js/site/pages/competences.js"></script>
+  <script src="js/site/pages/veille.js"></script>
+  <script src="js/site/pages/synthese.js"></script>
+  <script src="js/site/pages/contact.js"></script>
+  <script src="js/site/pages/corbeille.js"></script>
+  <script src="js/site/pages/detail-projet.js"></script>
+  <script src="js/site/navigation.js"></script>
+  <script src="js/site/accessibilite.js"></script>
+  <script src="js/site/bouton-haut.js"></script>
+  <script src="js/site/main.js"></script>
 </body>
 </html>

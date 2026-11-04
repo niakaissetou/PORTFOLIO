@@ -1,0 +1,71 @@
+/* ===== style/pages/realisations.css : la page Réalisations : cartes, filtre, détail d'un projet, difficultés, preuves. ===== */
+
+/* Bandeau "outil choisi" sur la page Réalisations */
+.filtre {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: .6rem;
+  margin: 0 0 1rem;
+  padding: .6rem .8rem;
+  border: 2px solid var(--bleu);
+  border-radius: 10px;
+  background: var(--bleu_clair);
+}
+.filtre button {
+  font: inherit;
+  font-weight: 700;
+  border: var(--epaisseur) solid var(--texte);
+  background: var(--surface);
+  color: var(--texte);
+  border-radius: 8px;
+  padding: .25rem .7rem;
+  cursor: pointer;
+  min-height: 36px;
+}
+
+/* Difficultés rencontrées : orange + symbole ▲ + texte */
+details.difficulte { border: 2px solid var(--orange); background: var(--orange_clair); border-radius: 10px; }
+details.difficulte summary {
+  cursor: pointer;
+  padding: .5rem .8rem;
+  font-weight: 700;
+  color: var(--orange);
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+}
+.difficulte_corps { padding: .2rem .9rem .9rem; display: grid; gap: .8rem; }
+.difficulte_item { display: grid; gap: .3rem; }
+.difficulte_item h4 { margin: 0; font-size: 1rem; }
+.difficulte_item dl { margin: 0; display: grid; gap: .3rem; }
+.difficulte_item dt { font-weight: 700; font-size: .75rem; letter-spacing: .06em; text-transform: uppercase; color: var(--orange); }
+.difficulte_item dd { margin: 0; overflow-wrap: anywhere; }
+
+/* ===== 9. RÉALISATIONS : cartes de la liste, page d'un projet ===== */
+a.carte_projet { text-decoration: none; color: var(--texte); }          /* toute la carte est un lien */
+a.carte_projet:hover h2, a.carte_projet:focus-visible h2 { text-decoration: underline; text-underline-offset: 4px; }
+.carte_projet h2 { display: flex; justify-content: space-between; gap: .6rem; font-size: 1.05rem; margin: 0; }
+.fleche { color: var(--bleu); flex: none; }                             /* la flèche → */
+.carte_projet .resume { color: var(--texte_doux); }
+.carte_projet .extrait { font-size: .9rem; }
+
+.retour_liste { display: inline-block; margin-bottom: 1rem; font-weight: 700; }   /* ← Retour aux réalisations */
+.section_carte { border: var(--epaisseur) solid var(--trait); border-radius: 12px; padding: 1rem 1.1rem; margin-bottom: 1rem; background: var(--surface); }
+.section_carte h2 { margin: 0 0 .4rem; }
+.section_carte p { margin: 0; max-width: 65ch; }
+.section_carte ol { margin: 0; padding-left: 1.3rem; display: grid; gap: .4rem; }
+
+.liste_docs { display: grid; gap: .6rem; }
+.ligne_doc { display: flex; flex-wrap: wrap; align-items: center; gap: .5rem 1rem; border: var(--epaisseur) solid var(--trait); border-radius: 10px; padding: .6rem .8rem; background: var(--surface_2); }
+.nom_doc { flex: 1; min-width: 200px; font-weight: 700; }
+.boutons_doc { display: flex; flex-wrap: wrap; gap: .5rem; }
+
+
+.section_carte ul { margin: 0; padding-left: 1.3rem; display: grid; gap: .4rem; }
+.difficulte_corps ul { margin: 0; padding-left: 1.2rem; display: grid; gap: .6rem; }
+.preuves { display: grid; gap: .8rem; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); }
+.preuves img { width: 100%; height: auto; display: block; background: #fff; border: 2px solid var(--texte); border-radius: 10px; }
+
+details.difficulte { margin-bottom: 1rem; }

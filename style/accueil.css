@@ -1,0 +1,173 @@
+/* ===== style/accueil.css : l'accueil : titre, dossiers qui flottent, barre du bas, logos. ===== */
+
+/* ===== 4. ACCUEIL : le conteneur est en relative, les éléments dedans en absolute ===== */
+.accueil {
+  position: relative;
+  height: calc(100dvh - 44px);   /* tout l'écran moins la barre du haut */
+  min-height: 620px;
+  overflow: hidden;
+}
+
+/* --- Le grand titre, centré --- */
+.bloc_titre {
+  position: absolute;
+  left: 50%;
+  top: 45%;
+  transform: translate(-50%, -50%);   /* recentre exactement l'élément sur ce point */
+  width: 100%;
+  padding-inline: 16px;
+  text-align: center;
+}
+
+.titre {
+  margin: 0;
+  font-family: var(--police_titre);
+  font-weight: 700;
+  font-size: clamp(2.6rem, 11.5vw, 9.5rem);   /* minimum, valeur fluide, maximum */
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+}
+
+/* Le cercle de la photo à la place du O (sa taille dépend du titre grâce aux em) */
+.photo {
+  width: .8em;
+  height: .8em;
+  border-radius: 50%;
+  border: .05em dashed var(--bleu);
+  margin-inline: .02em;
+  display: inline-grid;
+  place-items: center;
+  font-family: var(--police_texte);
+  font-weight: 700;
+  color: var(--bleu);
+  background: var(--surface);
+  overflow: hidden;
+}
+.photo span { font-size: .13em; line-height: 1.2; }
+.photo img { width: 100%; height: 100%; object-fit: cover; display: block; }   /* pour ta vraie photo */
+
+.sous_titre {
+  font-family: var(--police_titre);
+  font-weight: 700;
+  font-size: clamp(1.1rem, 3.2vw, 2.6rem);
+  margin: .3rem 0 0;
+}
+.auteur {
+  margin: .6rem 0 0;
+  font-size: clamp(1rem, 1.6vw, 1.25rem);
+}
+.auteur strong {
+  background: var(--bleu_clair);
+  padding: .05em .35em;
+  border-radius: 4px;
+  outline: 2px solid var(--bleu);
+}
+
+/* --- Les dossiers --- */
+.dossier {
+  position: absolute;
+  left: var(--x);               /* la position vient du style="--x:..." écrit dans le HTML */
+  top: var(--y);
+  transform: translate(-50%, -50%);
+  display: block;
+  width: 140px;
+  padding: 6px;
+  text-align: center;
+  text-decoration: none;
+  color: var(--texte);
+  border-radius: 14px;
+}
+
+/* .flotte fait le mouvement haut-bas. La durée et le décalage changent pour chaque dossier. */
+.flotte {
+  display: grid;
+  justify-items: center;
+  gap: .35rem;
+  animation: flotter var(--duree, 5s) ease-in-out var(--decalage, 0s) infinite;
+}
+
+/* .zoom grossit au survol (séparé de .flotte : on ne peut pas animer deux transform sur un même élément) */
+.zoom {
+  display: grid;
+  justify-items: center;
+  gap: .35rem;
+  transition: transform .2s ease;
+}
+.dossier:hover .zoom,
+.dossier:focus-visible .zoom { transform: scale(1.1); }
+
+.dossier svg {
+  width: clamp(70px, 7.5vw, 104px);
+  height: auto;
+  filter: drop-shadow(0 6px 8px rgba(10, 40, 80, .22));
+}
+.corbeille svg { width: clamp(54px, 5.6vw, 78px); }
+
+.etiquette {
+  font-weight: 700;
+  font-size: 1.05rem;
+  line-height: 1.2;
+  padding: .1rem .4rem;
+  border-radius: 6px;
+}
+.dossier:hover .etiquette,
+.dossier:focus-visible .etiquette {
+  text-decoration: underline;           /* l'état "survolé" est aussi visible sans la couleur */
+  text-decoration-thickness: 2px;
+  text-underline-offset: 4px;
+}
+
+@keyframes flotter {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-16px); }
+}
+
+/* --- La barre du bas : CV + contacts --- */
+.barre_bas {
+  position: absolute;
+  left: 50%;
+  bottom: 16px;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  padding: .7rem 1.1rem;
+  max-width: calc(100% - 32px);
+  background: var(--surface);
+  border: var(--epaisseur) solid var(--trait);
+  border-radius: 22px;
+  box-shadow: 0 8px 24px rgba(10, 30, 60, .15);
+}
+.contacts { display: flex; gap: .9rem; }
+.contact {
+  display: grid;
+  justify-items: center;
+  gap: .25rem;
+  text-decoration: none;
+  color: var(--texte);
+  font-size: .75rem;
+  font-weight: 700;
+  padding: .2rem;
+  border-radius: 12px;
+  transition: transform .15s ease;
+}
+.contact:hover,
+.contact:focus-visible { transform: translateY(-4px) scale(1.08); }
+
+/* Les icônes carrées (CV, GitHub, LinkedIn, mail et les logos des outils) : toutes de la même taille */
+.logo {
+  width: 46px;
+  height: 46px;
+  flex: none;
+  border-radius: 12px;
+  background: #fff;                 /* fond blanc : les logos sont dessinés pour un fond clair */
+  border: 2px solid var(--texte);
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+}
+.logo img { width: 72%; height: 72%; object-fit: contain; display: block; }
+.logo svg { width: 62%; height: 62%; }
+.sigle { font-family: var(--police_titre); font-weight: 700; font-size: .85rem; color: #12151B; }

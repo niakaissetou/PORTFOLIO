@@ -1,0 +1,54 @@
+/* ===== style/couleurs.css : mes couleurs, mes polices et les options d'accessibilité. ===== */
+
+/* ===== STYLE DU PORTFOLIO : bureau clair, dossiers bleus qui flottent. Palette bleu + orange (deutéranomalie) : jamais de rouge/vert, jamais la couleur seule. ===== */
+
+/* ===== 1. VARIABLES : mes couleurs et mes polices, définies une seule fois ===== */
+:root {
+  --fond: #EEF2F7;             /* fond de la page */
+  --barre: #DFE6EF;          /* fond de la barre du haut */
+  --surface: #FFFFFF;        /* fond des cartes et de la fenêtre */
+  --surface_2: #F3F6FA;      /* fond secondaire */
+  --texte: #12151B;             /* couleur du texte */
+  --texte_doux: #3F4A5A;          /* texte secondaire */
+  --trait: #A9B5C5;          /* bordures */
+  --bleu: #0057A3;         /* bleu principal */
+  --texte_sur_bleu: #FFFFFF;   /* texte posé sur le bleu */
+  --orange: #B34700;           /* orange foncé : focus, alertes, difficultés */
+  --bleu_clair: #CFE5FA;             /* bleu très clair pour surligner */
+  --orange_clair: #FFF0E3;    /* fond orange très clair */
+
+  --dossier_fond: #3A97D6;
+  --dossier_devant: #6CBBEF;
+  --dossier_bord: #17669E;
+
+  --police_titre: "Space Mono", "Courier New", monospace;
+  --police_texte: "Plus Jakarta Sans", Verdana, sans-serif;
+
+  --epaisseur: 1px;          /* épaisseur des bordures (2px en contraste renforcé) */
+}
+
+/* Mode sombre : si l'ordinateur est en mode sombre, on change seulement les variables */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --fond: #0F141B;
+    --barre: #19212C;
+    --surface: #18202B;
+    --surface_2: #1F2937;
+    --texte: #F1F4F8;
+    --texte_doux: #C3CDDB;
+    --trait: #53627A;
+    --bleu: #7DBDFF;
+    --texte_sur_bleu: #07121F;
+    --orange: #FFB066;
+    --bleu_clair: #23476F;
+    --orange_clair: #3B2410;
+    --dossier_fond: #2C7EB8;
+    --dossier_devant: #4FA8DE;
+    --dossier_bord: #A8D8F8;
+    color-scheme: dark;
+  }
+}
+
+/* Options du bouton Accessibilité : le JavaScript ajoutera ces classes sur <html> */
+html.contraste { --trait: var(--texte); --texte_doux: var(--texte); --epaisseur: 2px; }
+html.grand { font-size: 125%; }

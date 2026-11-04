@@ -1,0 +1,79 @@
+/* ===== style/composants.css : les éléments réutilisés partout : étiquettes, boutons, cartes, lignes clé/valeur, tableaux, logos. ===== */
+
+/* ===== 6. ÉLÉMENTS RÉUTILISÉS DANS LES PAGES ===== */
+/* Étiquette "À compléter" : bordure orange en pointillés + texte, pas seulement la couleur */
+.a_completer {
+  display: inline-block;
+  border: 2px dashed var(--orange);
+  color: var(--orange);
+  font-weight: 700;
+  padding: 0 .5rem;
+  border-radius: 6px;
+  font-size: .85rem;
+}
+.puce {
+  display: inline-block;
+  font-size: .8rem;
+  font-weight: 700;
+  border: var(--epaisseur) solid var(--texte);
+  border-radius: 999px;
+  padding: .1rem .65rem;
+  background: var(--surface_2);
+}
+.bouton {
+  display: inline-block;
+  font-weight: 700;
+  text-decoration: none;
+  color: var(--texte_sur_bleu);
+  background: var(--bleu);
+  border: 2px solid var(--bleu);
+  border-radius: 10px;
+  padding: .4rem .9rem;
+}
+.bouton:hover { text-decoration: underline; }
+.bouton.secondaire { background: transparent; color: var(--bleu); }
+
+/* Grille de cartes (réalisations, articles…) */
+.grille { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(min(100%, 270px), 1fr)); }
+.carte {
+  border: var(--epaisseur) solid var(--trait);
+  border-radius: 12px;
+  padding: 1.1rem;
+  background: var(--surface);
+  min-width: 0;
+  transition: transform .2s ease;
+  display: flex;
+  flex-direction: column;
+  gap: .6rem;
+}
+.carte:hover { transform: scale(1.02); }       /* léger zoom au survol */
+.carte p { margin: 0; }
+.puces { display: flex; flex-wrap: wrap; gap: .4rem; margin-top: auto; padding-top: .4rem; }
+
+/* Tableaux (avec défilement horizontal sur petit écran) */
+.defilement { overflow-x: auto; border: var(--epaisseur) solid var(--trait); border-radius: 12px; }
+table { border-collapse: collapse; width: 100%; min-width: 560px; }
+th, td { padding: .7rem .8rem; text-align: left; border-bottom: var(--epaisseur) solid var(--trait); vertical-align: top; }
+thead th { background: var(--surface_2); font-size: .9rem; }
+tbody tr:last-child td { border-bottom: 0; }
+
+/* Contact : lignes clé / valeur */
+.lignes { display: grid; gap: .8rem; }
+.ligne { display: flex; flex-wrap: wrap; gap: .5rem 1rem; align-items: center; border: var(--epaisseur) solid var(--trait); border-radius: 12px; padding: .8rem 1rem; }
+.ligne .cle { font-weight: 700; min-width: 7.5rem; }
+.ligne .valeur { flex: 1; min-width: 0; overflow-wrap: anywhere; }
+.ligne button {
+  font: inherit;
+  font-weight: 700;
+  color: var(--texte);
+  background: var(--surface_2);
+  border: var(--epaisseur) solid var(--texte);
+  border-radius: 8px;
+  padding: .3rem .8rem;
+  cursor: pointer;
+  min-height: 40px;
+}
+
+/* Compétences : deux logos côte à côte dans la même boîte */
+.logo.double { display: flex; gap: 2px; }
+.logo.double img { width: 38%; height: 38%; }

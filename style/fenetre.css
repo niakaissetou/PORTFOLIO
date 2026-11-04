@@ -1,0 +1,95 @@
+/* ===== style/fenetre.css : la fenêtre des pages : barre de titre, menu de gauche, zone de texte. ===== */
+
+/* ===== 5. FENÊTRE (style Finder) pour les autres pages ===== */
+.zone_pages { padding-block: 16px; }
+
+.fenetre {
+  max-width: 1120px;
+  margin: 0 auto;
+  background: var(--surface);
+  border: var(--epaisseur) solid var(--trait);
+  border-radius: 14px;
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: 250px minmax(0, 1fr);   /* menu de 250px + le reste */
+  grid-template-rows: auto 1fr;
+  min-height: calc(100dvh - 44px - 32px);
+  box-shadow: 0 14px 40px rgba(10, 30, 60, .14);
+}
+
+.barre_titre {
+  grid-column: 1 / -1;                           /* occupe toute la largeur */
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: .6rem .9rem;
+  background: var(--surface_2);
+  border-bottom: var(--epaisseur) solid var(--trait);
+}
+.fermer a {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-size: .8rem;
+  font-weight: 700;
+  line-height: 1;
+  text-decoration: none;
+  color: var(--texte);
+  border: 2px solid var(--texte);
+  background: var(--barre);
+}
+.fermer a:hover { background: var(--orange); color: #fff; }
+.titre_page { font-family: var(--police_titre); font-weight: 700; font-size: 1.05rem; }
+.retour { margin-left: auto; font-size: .9rem; }
+
+/* Menu de gauche */
+.menu_gauche {
+  background: var(--surface_2);
+  border-right: var(--epaisseur) solid var(--trait);
+  padding: 1rem .75rem;
+}
+.menu_gauche h2 {
+  margin: 0 0 .5rem .5rem;
+  font-size: .75rem;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--texte_doux);
+}
+.menu_gauche ul { list-style: none; margin: 0; padding: 0; display: grid; gap: .15rem; }
+.menu_gauche a {
+  display: flex;
+  align-items: center;
+  gap: .6rem;
+  padding: .55rem .6rem;
+  border-radius: 10px;
+  text-decoration: none;
+  color: var(--texte);
+  font-weight: 700;
+  border: 2px solid transparent;
+  min-height: 44px;
+  transition: transform .15s ease;
+}
+.menu_gauche a svg { width: 30px; height: 24px; flex: none; }
+.menu_gauche a:hover { transform: scale(1.04); background: var(--bleu_clair); }
+.menu_gauche a[aria-current="page"] { background: var(--surface); border-color: var(--bleu); }   /* page en cours : cadre + point */
+.menu_gauche a[aria-current="page"]::after { content: "●"; margin-left: auto; color: var(--bleu); font-size: .7rem; }
+
+/* Zone où s'affiche le contenu de la page */
+.zone_texte { padding: clamp(1.1rem, 3vw, 2.2rem); min-width: 0; }
+.zone_texte h1 {
+  font-family: var(--police_titre);
+  font-weight: 700;
+  font-size: clamp(1.7rem, 4vw, 2.5rem);
+  line-height: 1.15;
+  margin: 0 0 .4rem;
+  text-wrap: balance;
+}
+.zone_texte h2 { font-family: var(--police_titre); font-size: 1.15rem; margin: 0 0 .4rem; }
+.zone_texte h3 { font-family: var(--police_titre); font-size: 1.05rem; margin: 0; }
+.introduction { color: var(--texte_doux); max-width: 65ch; margin: 0 0 1.5rem; }
+.titre_section { margin-top: 2rem !important; }
+
+/* le titre reçoit le focus à l'ouverture d'une page : pas de cadre autour */
+.zone_texte h1:focus { outline: none; }

@@ -1,0 +1,8 @@
+/* ===== style/accessibilite.css : animations coupées si demandé. Doit rester en dernier. ===== */
+
+/* ===== 8. MOUVEMENT : animations coupées si demandé ===== */
+html.calme *, html.calme *::before, html.calme *::after { animation: none !important; transition: none !important; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}

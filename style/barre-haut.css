@@ -1,0 +1,58 @@
+/* ===== style/barre-haut.css : la barre du haut et le panneau Accessibilité. ===== */
+
+/* ===== 3. BARRE DU HAUT ===== */
+.menu_haut {
+  position: sticky;           /* reste collée en haut quand on fait défiler */
+  top: 0;
+  z-index: 20;
+  background: var(--barre);
+  border-bottom: var(--epaisseur) solid var(--trait);
+}
+.menu_contenu {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  min-height: 44px;
+  flex-wrap: wrap;            /* sur petit écran, les éléments passent à la ligne */
+  padding-block: 4px;
+}
+.menu_haut strong a {
+  color: inherit;
+  text-decoration: none;
+  font-family: var(--police_titre);
+  font-weight: 700;
+}
+.info { color: var(--texte_doux); font-size: .9rem; }
+.espace { flex: 1; }          /* pousse ce qui suit vers la droite */
+
+.menu_haut button {
+  font: inherit;
+  font-size: .9rem;
+  color: var(--texte);
+  background: transparent;
+  border: var(--epaisseur) solid var(--trait);
+  border-radius: 8px;
+  padding: .3rem .7rem;
+  cursor: pointer;
+  min-height: 36px;
+}
+.menu_haut button:hover { background: var(--surface); }
+
+/* Panneau Accessibilité */
+.acces { position: relative; }
+.acces_panneau {
+  position: absolute;
+  right: 0;
+  top: calc(100% + 8px);
+  width: min(330px, calc(100vw - 32px));
+  background: var(--surface);
+  border: var(--epaisseur) solid var(--trait);
+  border-radius: 12px;
+  padding: 1rem;
+  z-index: 40;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, .18);
+}
+.acces_panneau h2 { font-family: var(--police_titre); font-size: 1.05rem; margin: 0 0 .5rem; }
+.acces_panneau label { display: flex; gap: .7rem; align-items: center; padding: .5rem 0; cursor: pointer; }
+.acces_panneau input { width: 22px; height: 22px; accent-color: var(--bleu); }
+.acces_panneau p { margin: .5rem 0 0; font-size: .85rem; color: var(--texte_doux); }

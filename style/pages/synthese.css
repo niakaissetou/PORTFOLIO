@@ -1,0 +1,26 @@
+/* ===== style/pages/synthese.css : la page Tableau de synthèse. ===== */
+
+/* Tableau de synthèse : carte PDF */
+.doc_carte { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem 1.25rem; border: var(--epaisseur) solid var(--trait); border-radius: 14px; padding: 1.1rem; }
+.badge_pdf {
+  width: 72px;
+  height: 88px;
+  flex: none;
+  border: 2px solid var(--texte);
+  border-radius: 10px;
+  display: grid;
+  place-items: center;
+  font-family: var(--police_titre);
+  font-weight: 700;
+  color: var(--bleu);
+  background: var(--surface_2);
+}
+.doc_texte { flex: 1; min-width: 200px; }
+.doc_texte h2 { margin: 0 0 .2rem; }
+.doc_texte p { margin: 0; color: var(--texte_doux); }
+.doc_actions { display: grid; gap: .5rem; }
+
+/* l'aperçu est en haut de la carte, sur toute la largeur */
+.apercu_pdf { flex-basis: 100%; display: block; text-decoration: none; }
+.apercu_pdf img { display: block; width: min(100%, 720px); height: auto; border: 2px solid var(--texte); border-radius: 10px; background: #fff; }
+.apercu_pdf:hover img, .apercu_pdf:focus-visible img { outline: 3px solid var(--bleu); outline-offset: 3px; }

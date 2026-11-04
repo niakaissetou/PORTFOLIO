@@ -1,0 +1,29 @@
+/* ===== style/pages/parcours.css : la page Parcours (chronologie). ===== */
+
+/* Parcours : chronologie */
+ol.chronologie { list-style: none; margin: 0; padding: 0 0 0 1.4rem; border-left: 3px solid var(--bleu); display: grid; gap: 1.2rem; }
+ol.chronologie li { position: relative; }
+ol.chronologie li::before {
+  content: "";
+  position: absolute;
+  left: calc(-1.4rem - 9px);
+  top: .4rem;
+  width: 15px;
+  height: 15px;
+  background: var(--surface);
+  border: 3px solid var(--bleu);
+  border-radius: 50%;
+}
+ol.chronologie .quand { font-weight: 700; font-size: .9rem; color: var(--texte_doux); }
+ol.chronologie h2 { margin: 0; }
+ol.chronologie p { margin: .2rem 0 0; }
+
+/* Parcours : logo + texte à côté */
+.etape { display: flex; gap: .9rem; align-items: flex-start; }
+.etape_texte { min-width: 0; }
+.etape_texte p { margin: .2rem 0 0; }
+.lieu { color: var(--texte_doux); font-weight: 700; }
+.missions { margin: .5rem 0 0; padding-left: 1.2rem; display: grid; gap: .3rem; }
+
+/* corrections : la liste des missions n'a pas les points de la chronologie */
+ol.chronologie .missions li::before { content: none; }

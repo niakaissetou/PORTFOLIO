@@ -1,0 +1,49 @@
+/* ===== style/pages/competences.css : la page Compétences : familles d'outils et pastilles. ===== */
+
+/* Compétences : familles d'outils et pastilles */
+.familles { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr)); margin-bottom: 1.5rem; }
+.famille { border: var(--epaisseur) solid var(--trait); border-radius: 14px; padding: 1rem; background: var(--surface); min-width: 0; }
+.famille header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: .5rem;
+  border-bottom: var(--epaisseur) solid var(--trait);
+  padding-bottom: .6rem;
+  margin-bottom: .8rem;
+}
+.famille h2 { margin: 0; }
+.compte { font-size: .85rem; color: var(--texte_doux); white-space: nowrap; }
+.pastilles { display: grid; gap: .6rem; grid-template-columns: repeat(auto-fill, minmax(min(100%, 150px), 1fr)); margin: 0; padding: 0; list-style: none; }
+.pastille {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: .7rem;
+  font: inherit;
+  font-weight: 700;
+  color: var(--texte);
+  background: var(--surface_2);
+  border: var(--epaisseur) solid var(--trait);
+  border-radius: 14px;
+  padding: .4rem .8rem .4rem .45rem;
+  cursor: pointer;
+  text-align: left;
+  min-height: 58px;
+  transition: transform .15s ease;
+}
+.pastille:hover,
+.pastille:focus-visible { transform: scale(1.05); background: var(--bleu_clair); }
+.pastille small { display: block; font-weight: 400; color: var(--texte_doux); font-size: .75rem; line-height: 1.1; }
+
+/* Blocs du référentiel */
+.bloc { border: var(--epaisseur) solid var(--trait); border-radius: 12px; padding: 1.1rem; margin-bottom: 1rem; }
+.bloc header { display: flex; flex-wrap: wrap; gap: .5rem 1rem; align-items: baseline; justify-content: space-between; }
+.bloc ul { margin: .5rem 0 0; padding-left: 1.2rem; }
+.niveau { font-weight: 700; white-space: nowrap; }
+.niveau .carres { letter-spacing: .15em; }
+
+.pastille > span:last-child { min-width: 0; overflow-wrap: anywhere; }
+
+/* noms d'outils longs : on coupe entre les mots, pas au milieu */
+.pastille > span:last-child { overflow-wrap: break-word; }

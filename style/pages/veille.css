@@ -1,0 +1,33 @@
+/* ===== style/pages/veille.css : la page Veille. ===== */
+
+/* Veille */
+.avis_boite { border: 2px solid var(--bleu); background: var(--bleu_clair); border-radius: 12px; padding: 1rem 1.1rem; display: grid; gap: .5rem; }
+.avis_boite h2, .avis_boite p { margin: 0; }
+.journal { display: grid; gap: 1rem; }
+.entree { border: var(--epaisseur) solid var(--trait); border-radius: 12px; padding: 1.1rem; display: grid; gap: .7rem; }
+.entree .meta { display: flex; flex-wrap: wrap; gap: .5rem; align-items: center; font-size: .9rem; color: var(--texte_doux); }
+.entree p { margin: 0; }
+.mon_avis { background: var(--surface_2); border: var(--epaisseur) solid var(--trait); border-radius: 10px; padding: .7rem .9rem; display: grid; gap: .3rem; }
+.mon_avis .etiquette_avis { font-size: .75rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--bleu); }
+.suite { margin-top: 1rem; padding: .8rem 1rem; border: 2px dashed var(--bleu); border-radius: 10px; }
+.liste_sources { margin: 0; padding-left: 1.2rem; }
+
+/* Veille : une fiche dépliable par séance */
+details.veille_fiche { border: var(--epaisseur) solid var(--trait); border-radius: 12px; background: var(--surface); margin-bottom: 1rem; }
+details.veille_fiche > summary { cursor: pointer; padding: .8rem 1rem; font-weight: 700; min-height: 48px; display: flex; flex-wrap: wrap; align-items: center; gap: .3rem 1rem; }
+details.veille_fiche[open] > summary { border-bottom: var(--epaisseur) solid var(--trait); }
+.veille_corps { padding: 1rem; display: grid; gap: 1rem; }
+.synthese_veille { display: grid; gap: .7rem; }
+.synthese_veille ul { margin: 0; padding-left: 1.2rem; display: grid; gap: .3rem; }
+.veille_corps h3 { margin: .3rem 0 0; }
+.entree h4 { margin: 0; font-family: var(--police_titre); font-size: 1rem; }
+
+.synthese_veille p { margin: 0; }
+
+.liste_simple { margin: 0; padding-left: 1.2rem; display: grid; gap: .4rem; }
+.ligne .valeur .puces { margin: 0; padding: 0; }
+.entree h4 { overflow-wrap: anywhere; }
+code { font-family: var(--police_titre); font-size: .9em; background: var(--surface_2); border: var(--epaisseur) solid var(--trait); border-radius: 6px; padding: .05em .35em; overflow-wrap: anywhere; }
+
+.avis_boite p + p { margin-top: .6rem; }
+.veille_corps > p { margin: 0; }

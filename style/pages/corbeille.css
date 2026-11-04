@@ -1,0 +1,16 @@
+/* ===== style/pages/corbeille.css : la page Corbeille et le message « rien à afficher ». ===== */
+
+/* Corbeille : faux fichiers dépliables */
+.fichiers { display: grid; gap: .6rem; }
+details.fichier { border: var(--epaisseur) solid var(--trait); border-radius: 12px; background: var(--surface); }
+details.fichier summary { display: flex; align-items: center; gap: .8rem; padding: .7rem 1rem; cursor: pointer; min-height: 48px; font-weight: 700; list-style: none; }
+details.fichier summary::-webkit-details-marker { display: none; }
+details.fichier summary .meta { margin-left: auto; font-weight: 400; color: var(--texte_doux); font-size: .85rem; }
+details.fichier[open] summary { border-bottom: var(--epaisseur) solid var(--trait); }
+.blague { padding: 1rem; display: grid; gap: .7rem; justify-items: start; }
+.blague p { margin: 0; max-width: 65ch; }
+.image_blague img { max-width: min(100%, 360px); border-radius: 10px; border: 2px solid var(--texte); display: block; }
+
+/* Message "rien à afficher" */
+.vide { border: 2px dashed var(--trait); border-radius: 14px; padding: 2rem 1rem; text-align: center; display: grid; justify-items: center; gap: .6rem; }
+.vide svg { width: 64px; height: auto; }
